@@ -33,7 +33,7 @@ module IR (
     input   wire        shiftir,
     input   wire        updateir,
     input   wire        TDI,
-    output  wire [2:0]  inst,
+    output  wire [1:0]  inst,
     output  wire        TDO
 );
 
@@ -56,8 +56,8 @@ endmodule //IR
 
 // Combinational logic to interpret the JTAG instruction into control signals
 module ID (
-    input  wire [2:0]  inst,
-    output wire [2:0]  sel
+    input  wire [1:0]  inst,
+    output wire [1:0]  sel
 );
 
     assign sel = inst;
