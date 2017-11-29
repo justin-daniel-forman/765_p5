@@ -17,7 +17,6 @@ module s9234_JTAG_BSR(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g3
   g4104,g4107,g4098,TDO_BSR;
 
   // intermediary wires
-  
   wire tdi_g89,tdi_g94,tdi_g98,tdi_g102,tdi_g107,tdi_g301,tdi_g306,tdi_g310,
   tdi_g314,tdi_g319,tdi_g557,tdi_g558,tdi_g559,tdi_g560,tdi_g561,tdi_g562,
   tdi_g563,tdi_g564,tdi_g705,tdi_g639,tdi_g567,tdi_g45,tdi_g42,tdi_g39,
