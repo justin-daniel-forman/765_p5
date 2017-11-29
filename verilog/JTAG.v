@@ -8,7 +8,7 @@ module SFF(
     input   wire shiftdr,   //Selects between system data and scan chain input
     input   wire bs_en,     //Selects between scanchain and test for output
     output  wire TDO,       //Scan chain output
-    output  wire do         //System data out
+    output  wire dout       //System data out
 );
 
     wire sl_mux; //shift-load
@@ -23,7 +23,7 @@ module SFF(
 
     udff update_ff  (update_out, clockdr, capture_out);
     assign tn_mux = (bs_en) ? update_out : din;
-    assign do     = tn_mux;
+    assign dout     = tn_mux;
 
 endmodule //SFF
 
