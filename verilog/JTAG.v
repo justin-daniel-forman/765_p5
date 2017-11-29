@@ -40,15 +40,15 @@ module IR (
     wire s0_out;
     wire s1_out;
 
-    udff s0 (s0_out, shiftir, TDI);
-    udff s1 (s1_out, shiftir, s0_out);
+    dff s0 (s0_out, shiftir, TDI);
+    dff s1 (s1_out, shiftir, s0_out);
     assign TDO = s1_out;
 
     wire u0_out;
     wire u1_out;
 
-    udff u0 (u0_out, updateir, s0_out);
-    udff u1 (u1_out, updateir, s1_out);
+    dff u0 (u0_out, updateir, s0_out);
+    dff u1 (u1_out, updateir, s1_out);
     assign inst = {u1_out, u0_out};
 
 endmodule //IR
