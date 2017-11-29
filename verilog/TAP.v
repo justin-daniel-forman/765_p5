@@ -1,32 +1,32 @@
 // tapcntlr.v
 
 module tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
-		     shiftir, updateir, select, bs_en);
+             shiftir, updateir, select, bs_en);
 
    input TCK, TRST, TMS;
    output clockdr, shiftdr, updatedr, clockir,
-	  shiftir, updateir, select, bs_en;
+      shiftir, updateir, select, bs_en;
 
    wire   ps3, ps2, ps1, ps0;
    wire   nps3, nps2, nps1, nps0;
    wire   ns3, ns2, ns1, ns0;
    wire   nTMS;
    wire   nTCK;
-   
+
    wire   w30, w31, w32, w33, w34, w35;
    wire   w20, w21, w22, w23;
    wire   w10, w11, w12;
    wire   w00, w01, w02, w03, w04, w05, w06, w07, w08;
    wire   w0, w1, w2, w3;
    wire   sir, clockdreg, bsen;
-   
+
    not NOT_TCK(nTCK, TCK);
    not NOT_TMS(nTMS, TMS);
    not NOT_ps3(nps3, ps3);
    not NOT_ps2(nps2, ps2);
    not NOT_ps1(nps1, ps1);
-   not NOT_ps0(nps0, ps0);   
-   
+   not NOT_ps0(nps0, ps0);
+
    //next state3
    // NS3 = PS3(PS1 + PS0) + TMS(PS3 PS2' + PS2' PS1' PS0)
    dff_r DFF3(ps3, TCK, TRST, ns3);
@@ -37,7 +37,7 @@ module tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
    or OR2_31(w34, w32, w33);
    and AND2_32(w35, TMS, w34);
    or OR2_32(ns3, w31, w35);
-   
+
    //next state2
    // NS2 = PS2 PS1 + TMS(PS1 + PS2 PS0)
    dff_r DFF2(ps2, TCK, TRST, ns2);
@@ -73,7 +73,7 @@ module tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
    // clockdr = 001X
    and AND4_0(clockdreg, nps3, nps2, ps1, nTCK);
    buf BUF_0(clockdr, clockdreg);
-  
+
    // shiftdr = 0010
    and AND4_1(shiftdr, nps3, nps2, ps1, nps0);
 
@@ -85,7 +85,7 @@ module tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
    // shiftir = 1010
    and AND4_3(sir, ps3, nps2, ps1, nps0);
    dff DFF_5(shiftir, nTCK, sir);
-   
+
    // updateir = 1100
    and AND5_1(updateir, ps3, ps2, nps1, nps0, nTCK);
 
@@ -98,9 +98,3 @@ module tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
    dff DFF_6(bs_en, nTCK, bsen);
 
 endmodule // tapcontroller
-
-
-		
-
-   
-   

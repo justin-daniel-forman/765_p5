@@ -2,10 +2,10 @@
 // Holds pre-designed primitives
 
 primitive udff_r(q, clock, reset_l, data);
-   
+
    output q; reg q;
    input  clock, reset_l, data;
-     
+
    table
       // obtain output on rising edge of clock
       // clock reset_l data q q+
@@ -22,7 +22,7 @@ primitive udff_r(q, clock, reset_l, data);
       // ignore data changes on steady clock
       ? 1 (??) : ? : - ;
    endtable
-   
+
 endprimitive // udff_r
 
 
@@ -42,12 +42,12 @@ module dff_r(q, clock, reset_l, data);
 endmodule // dff_r
 `endcelldefine
 
-  
+
 primitive udff(q, clock, data);
-   
+
    output q; reg q;
    input  clock, data;
-     
+
    table
       // obtain output on rising edge of clock
       // clock data q q+
@@ -60,9 +60,9 @@ primitive udff(q, clock, data);
       // ignore data changes on steady clock
       ? (??) : ? : - ;
    endtable
-   
+
 endprimitive // u_dff
-  
+
 
 `timescale 1ns / 1ps
 `celldefine
@@ -76,11 +76,11 @@ module dff(q, clock, data);
       // arc clk --> q
       (posedge clock => ( q +: data )) = (0.1, 0.1);
    endspecify
-   
+
 endmodule // udff
 `endcelldefine
 
-  
+
 module u_mux2(out, in0, in1, sel);
    output out;
    input in0, in1, sel;
