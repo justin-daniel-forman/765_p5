@@ -33,8 +33,8 @@ def main():
             if (list_type == "wire"):
                 wire_set = set((line[len("wire"):]).split(',')[0:])
             if (list_type == "dff"):
-                dff_in_set.add((line.split(',')[2]).split(")")[0])
-                dff_out_set.add((line.split(',')[0]).split("(")[1])
+                dff_out_set.add((line.split(',')[2]).split(")")[0])
+                dff_in_set.add((line.split(',')[0]).split("(")[1])
 
     wire_set -= dff_in_set     #remove dffs from wires
     wire_set -= dff_out_set
