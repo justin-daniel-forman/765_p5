@@ -22,17 +22,35 @@ module TOP_TB();
     //Clock generation
     initial begin
         TCLK = 0;
-        CK  = 0;
         forever #50 TCLK = ~TCLK; //Slower scan clock
-        forever #10 CK  = ~CK; //Faster system clock
+    end
+
+    initial begin
+        CK = 0;
+        forever #10 CK = ~CK;
     end
 
     //Begin Test bench
+    integer jj;
     initial begin
 
         reset_fsm();
-        shift_into_ir(2'b01);
+        shift_into_ir(2'b00);
         shift_into_dr(36'h0deadbeef);
+
+        jj = 0;
+        while(jj < 100) begin
+            @(posedge CK);
+            jj = jj + 1;
+        end
+
+        shift_out_data();
+        jj = 0;
+        while(jj < 30) begin
+            @(posedge TCLK);
+            jj = jj + 1;
+        end
+
         $finish;
     end
 
@@ -60,7 +78,6 @@ module TOP_TB();
             @(posedge TCLK); //Advance to Run Test
         end
     endtask
-
 
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the BSR
@@ -135,6 +152,42 @@ module TOP_TB();
             );
         end
     endtask
+
+
+    //Outputs the vector that is obtained from running the test
+    task shift_out_data();
+        integer ii;
+        begin
+            TMS = 1;
+            @(posedge TCLK); //Advance to Select DR Scan
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to Capture DR
+
+            TMS = 1;
+            @(posedge TCLK); //Advance to Exit1DR
+            @(posedge TCLK); //Advance to UpdateDR
+            @(posedge TCLK); //Advance to select DR Scan
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to Capture DR
+            @(posedge TCLK); //Advance to shift DR
+
+            ii = 0;
+            while(ii < 38) begin
+                $display("TDO: %b", TDO);
+                @(posedge TCLK);
+                ii = ii + 1;
+            end
+
+            TMS = 1;
+            @(posedge TCLK); //Advance to Exit1DR
+            @(posedge TCLK); //Advance to UpdateDR
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to IDLE
+         end
+    endtask;
 
 
     //Starts in the Run Test state and ends in the Run Test state
