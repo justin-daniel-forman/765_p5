@@ -21,7 +21,7 @@ module SFF(
     udff capture_ff (capture_out, clockdr, sl_mux);
     assign TDO = capture_out;
 
-    udff update_ff  (update_out, clockdr, capture_out);
+    udff update_ff  (update_out, updatedr, capture_out);
     assign tn_mux = (bs_en) ? update_out : din;
     assign dout     = tn_mux;
 
