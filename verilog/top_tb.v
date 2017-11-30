@@ -138,7 +138,7 @@ module TOP_TB();
 
 
     //Starts in the Run Test state and ends in the Run Test state
-    task shift_into_ir (input [1:0] v);
+    task shift_into_ir (input [0:1] v);
 
        integer ii;
        begin
@@ -154,8 +154,10 @@ module TOP_TB();
 
             ii = 0;
             while(ii < 2) begin
-                TDI = v[ii];
+                //FIXME: THE TIMING HERE IS WEIRD. shiftir and the input are
+                //off by one cycle
                 @(posedge TCLK); //Shift in test vector bit
+                TDI = v[ii];
 
                 // Return back to the initial state if we aren't done
                 if(ii == 1) begin
