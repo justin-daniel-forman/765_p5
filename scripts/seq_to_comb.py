@@ -38,7 +38,7 @@ def main():
 
     wire_set -= dff_in_set     #remove dffs from wires
     wire_set -= dff_out_set
-    i_set = o_set.union(dff_in_set)
+    i_set = i_set.union(dff_in_set)
     o_set = o_set.union(dff_out_set)
     module_set = o_set.union(i_set)
     
