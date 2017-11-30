@@ -1,6 +1,6 @@
-`include "./*"
+//`include "./*"
 
-module s9234_JTAG_TOP(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
+module s9234_JTAG_TOP(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
   g3222,g36,g3600,g37,g38,g39,g40,g4098,g4099,g41,g4100,g4101,g4102,g4103,
   g4104,g4105,g4106,g4107,g4108,g4109,g4110,g4112,g4121,g42,g4307,g4321,g44,
   g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
@@ -23,8 +23,8 @@ module s9234_JTAG_TOP(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g3
   wire TDO_interm, TDO_buff;
 
   // instantiating TAP controller
-  tapcontroller tapcontroller(TCK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
-	shiftir, updateir, select, bs_en);
+  tapcontroller tapcontroller(TCLK, TRST, TMS, clockdr, shiftdr, updatedr, clockir,
+    shiftir, updateir, select, bs_en);
 
   // instantiating BSR
   s9234_JTAG_BSR BSR(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
@@ -36,12 +36,12 @@ module s9234_JTAG_TOP(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g3
 
   // instantiating instruction registers
   IR inst_regs(shiftir, updateir, TDI, inst, TDO_IR);
-  
+
   // instantiating instruction decode
   ID inst_decode(inst, sel);
 
   // instantiating bypass register
-  dff dff_bypass(TDO_BYR, clock_dr, TDI); 
+  dff dff_bypass(TDO_BYR, clockdr, TDI);
 
   // muxing/buffering TDO; CHECK CODES
   u_mux2 mux0(TDO_interm, TDO_BSR, TDO_BYR, sel[0]);
