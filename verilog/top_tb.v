@@ -32,24 +32,25 @@ module TOP_TB();
 
     //Begin Test bench
     integer jj;
+    reg [38:0] r;
     initial begin
+
+        //$monitor($stime,, "TRST: %b, TDI: %b, TMS: %b", TRST, TDI, TMS);
 
         reset_fsm();
         shift_into_ir(2'b00);
-        shift_into_dr(36'h0deadbeef);
+        shift_into_dr(35'h0);
+        //shift_into_dr(35'h0deadbeef);
 
+        //Run the test
         jj = 0;
         while(jj < 100) begin
             @(posedge CK);
-            jj = jj + 1;
-        end
-
-        shift_out_data();
-        jj = 0;
-        while(jj < 30) begin
             @(posedge TCLK);
             jj = jj + 1;
         end
+
+        shift_out_data(r);
 
         $finish;
     end
@@ -63,9 +64,6 @@ module TOP_TB();
             TMS  = 1;
             TRST = 0;
             TDI  = 0;
-            @(posedge TCLK);
-            @(posedge TCLK);
-            @(posedge TCLK);
             @(posedge TCLK);
 
             TRST = 1;
@@ -81,7 +79,7 @@ module TOP_TB();
 
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the BSR
-    task shift_into_dr(input [35:0] v);
+    task shift_into_dr(input [34:0] v);
         integer ii;
         begin
             TDI = 0;
@@ -93,12 +91,13 @@ module TOP_TB();
             @(posedge TCLK); //Advance to Shift DR
 
             ii = 0;
-            while(ii < 36) begin
+            while(ii < 35) begin
+
                 TDI = v[ii];
                 @(posedge TCLK); //Shift in test vector bit
 
                 // Return back to the initial state if we aren't done
-                if(ii == 35) begin
+                if(ii == 34) begin
 
                     TMS = 1;
                     @(posedge TCLK); //Advance to Exit1 DR
@@ -154,8 +153,16 @@ module TOP_TB();
     endtask
 
 
+    //TODO: Runs some test
+    task run_test();
+
+        //FIXME: Implement this
+        reset_fsm();
+
+    endtask
+
     //Outputs the vector that is obtained from running the test
-    task shift_out_data();
+    task shift_out_data(output reg[38:0] result);
         integer ii;
         begin
             TMS = 1;
@@ -163,19 +170,12 @@ module TOP_TB();
 
             TMS = 0;
             @(posedge TCLK); //Advance to Capture DR
-
-            TMS = 1;
-            @(posedge TCLK); //Advance to Exit1DR
-            @(posedge TCLK); //Advance to UpdateDR
-            @(posedge TCLK); //Advance to select DR Scan
-
-            TMS = 0;
-            @(posedge TCLK); //Advance to Capture DR
-            @(posedge TCLK); //Advance to shift DR
+            @(posedge TCLK);
 
             ii = 0;
-            while(ii < 38) begin
-                $display("TDO: %b", TDO);
+            result = 0;
+            while(ii < 39) begin
+                result = result | (TDO << ii);
                 @(posedge TCLK);
                 ii = ii + 1;
             end
@@ -186,6 +186,8 @@ module TOP_TB();
 
             TMS = 0;
             @(posedge TCLK); //Advance to IDLE
+
+            $display("Result: %h", result);
          end
     endtask;
 
