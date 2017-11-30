@@ -35,7 +35,7 @@ module s9234_JTAG_TOP(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   g639,g6728,g702,g705,g89,g94,g98,clockdr,updatedr,shiftdr,bs_en,TDI,TDO_BSR);
 
   // instantiating instruction registers
-  IR inst_regs(shiftir, updateir, TDI, inst, TDO_IR);
+  IR inst_regs(clockir, shiftir, updateir, TDI, inst, TDO_IR);
 
   // instantiating instruction decode
   ID inst_decode(inst, sel);

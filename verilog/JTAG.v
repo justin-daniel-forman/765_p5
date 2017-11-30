@@ -30,6 +30,7 @@ endmodule //SFF
 
 // Chain of ffs to store the JTAG instruction
 module IR (
+    input   wire        clockir,
     input   wire        shiftir,
     input   wire        updateir,
     input   wire        TDI,
@@ -39,16 +40,21 @@ module IR (
 
     wire s0_out;
     wire s1_out;
+    wire s0_in;
+    wire s1_in;
 
-    dff s0 (s0_out, shiftir, TDI);
-    dff s1 (s1_out, shiftir, s0_out);
+    //Create 2 muxes with enable
+    u_mux2 s0m(s0_in, s0_out, TDI, shiftir);
+    u_mux2 s1m(s1_in, s1_out, s0_out, shiftir);
+    dff s0 (s0_out, clockir, s0_in);
+    dff s1 (s1_out, clockir, s1_in);
     assign TDO = s1_out;
 
     wire u0_out;
     wire u1_out;
 
-    dff u0 (u0_out, updateir, s0_out);
-    dff u1 (u1_out, updateir, s1_out);
+    dff u0 (u0_out, updateir, s0_in);
+    dff u1 (u1_out, updateir, s1_in);
     assign inst = {u1_out, u0_out};
 
 endmodule //IR

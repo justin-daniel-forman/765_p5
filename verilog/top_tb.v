@@ -31,11 +31,8 @@ module TOP_TB();
     initial begin
 
         reset_fsm();
-        shift_into_ir({1'b1, 1'b0});
-        shift_into_dr(36'h2_ffff_fff1);
-
-        //$display("My instruction should be 11, and is: %b\n\n", inst);
-
+        shift_into_ir(2'b01);
+        shift_into_dr(36'h0deadbeef);
         $finish;
     end
 
@@ -83,68 +80,58 @@ module TOP_TB();
                 TDI = v[ii];
                 @(posedge TCLK); //Shift in test vector bit
 
-                TMS = 1;
-                @(posedge TCLK); //Advance to Exit1 DR
-
                 // Return back to the initial state if we aren't done
                 if(ii == 35) begin
-                    @(posedge TCLK); //Advance to Update DR
-                    TMS = 0;
-                    @(posedge TCLK); //Advance to Run Test
-
-                // Loop back and keep shifting
-                end else begin
-                    TMS = 0;
-                    @(posedge TCLK); //Advance to Pause DR
 
                     TMS = 1;
-                    TDI = v[1];
-                    @(posedge TCLK); //Advance to Exit2 DR
+                    @(posedge TCLK); //Advance to Exit1 DR
+                    @(posedge TCLK); //Advance to Update DR
 
                     TMS = 0;
-                    @(posedge TCLK); //Advance to Shift IR
-                end
+                    @(posedge TCLK); //Advance to Run Test
+                    @(posedge TCLK);
 
+                end
                 ii = ii + 1;
             end
 
             $display("DR contains: %h", {
-                DUT.BSR.tdi_g94,
-                DUT.BSR.tdi_g98,
-                DUT.BSR.tdi_g102,
-                DUT.BSR.tdi_g107,
-                DUT.BSR.tdi_g301,
-                DUT.BSR.tdi_g306,
-                DUT.BSR.tdi_g310,
-                DUT.BSR.tdi_g314,
-                DUT.BSR.tdi_g319,
-                DUT.BSR.tdi_g557,
-                DUT.BSR.tdi_g558,
-                DUT.BSR.tdi_g559,
-                DUT.BSR.tdi_g560,
-                DUT.BSR.tdi_g561,
-                DUT.BSR.tdi_g562,
-                DUT.BSR.tdi_g563,
-                DUT.BSR.tdi_g564,
-                DUT.BSR.tdi_g705,
-                DUT.BSR.tdi_g639,
-                DUT.BSR.tdi_g567,
-                DUT.BSR.tdi_g45,
-                DUT.BSR.tdi_g42,
-                DUT.BSR.tdi_g39,
-                DUT.BSR.tdi_g702,
-                DUT.BSR.tdi_g32,
-                DUT.BSR.tdi_g38,
-                DUT.BSR.tdi_g46,
-                DUT.BSR.tdi_g36,
-                DUT.BSR.tdi_g47,
-                DUT.BSR.tdi_g40,
-                DUT.BSR.tdi_g37,
-                DUT.BSR.tdi_g41,
-                DUT.BSR.tdi_g22,
-                DUT.BSR.tdi_g44,
-                DUT.BSR.tdi_g23,
-                DUT.BSR.tdi_g2584 }
+                DUT.BSR.cut_g89,
+                DUT.BSR.cut_g94,
+                DUT.BSR.cut_g98,
+                DUT.BSR.cut_g102,
+                DUT.BSR.cut_g107,
+                DUT.BSR.cut_g301,
+                DUT.BSR.cut_g306,
+                DUT.BSR.cut_g310,
+                DUT.BSR.cut_g314,
+                DUT.BSR.cut_g319,
+                DUT.BSR.cut_g557,
+                DUT.BSR.cut_g558,
+                DUT.BSR.cut_g559,
+                DUT.BSR.cut_g560,
+                DUT.BSR.cut_g561,
+                DUT.BSR.cut_g562,
+                DUT.BSR.cut_g563,
+                DUT.BSR.cut_g564,
+                DUT.BSR.cut_g705,
+                DUT.BSR.cut_g639,
+                DUT.BSR.cut_g567,
+                DUT.BSR.cut_g45,
+                DUT.BSR.cut_g42,
+                DUT.BSR.cut_g39,
+                DUT.BSR.cut_g702,
+                DUT.BSR.cut_g32,
+                DUT.BSR.cut_g38,
+                DUT.BSR.cut_g46,
+                DUT.BSR.cut_g36,
+                DUT.BSR.cut_g47,
+                DUT.BSR.cut_g40,
+                DUT.BSR.cut_g37,
+                DUT.BSR.cut_g41,
+                DUT.BSR.cut_g22,
+                DUT.BSR.cut_g44,
+                DUT.BSR.cut_g23}
             );
         end
     endtask
@@ -152,7 +139,11 @@ module TOP_TB();
 
     //Starts in the Run Test state and ends in the Run Test state
     task shift_into_ir (input [1:0] v);
-        begin
+
+       integer ii;
+       begin
+
+            TDI = 0;
             TMS = 1;
             @(posedge TCLK); //Advance to Select DR Scan
             @(posedge TCLK); //Advance to Select IR Scan
@@ -161,32 +152,30 @@ module TOP_TB();
             @(posedge TCLK); //Advance to Capture IR
             @(posedge TCLK); //Advance to Shift IR
 
-            //FIXME: Do we need to go through an entire loop to shift in one bit?
-            //       shiftir stays high from TAP, so using that value as a clock
-            //       wont allow us to shift in multiple bits in this state.
-            TDI = v[0];
-            @(posedge TCLK); //Shift in 1
+            ii = 0;
+            while(ii < 2) begin
+                TDI = v[ii];
+                @(posedge TCLK); //Shift in test vector bit
 
-            TMS = 1;
-            @(posedge TCLK); //Advance to Exit IR
+                // Return back to the initial state if we aren't done
+                if(ii == 1) begin
 
-            TMS = 0;
-            @(posedge TCLK); //Advance to Pause IR
+                    TMS = 1;
+                    @(posedge TCLK); //Advance to Exit1 IR
+                    @(posedge TCLK); //Advance to Update IR
 
-            TMS = 1;
-            TDI = v[1];
-            @(posedge TCLK); //Advance to Exit2 IR
+                    TMS = 0;
+                    @(posedge TCLK); //Advance to Run Test
+                    @(posedge TCLK);
 
-            TMS = 0;
-            @(posedge TCLK); //Advance to Shift IR
+                end
+                ii = ii + 1;
+            end
 
-            TMS = 1;
-            @(posedge TCLK); //Advance to Exit1 IR
-            @(posedge TCLK); //Advance to Update IR
+            $display("IR contains: %b", DUT.inst_regs.inst);
 
-            TMS = 0;
-            @(posedge TCLK); //Advance to Run Test
         end
+
     endtask
 
 endmodule //TOP_TB
