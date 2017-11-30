@@ -1,13 +1,13 @@
 //`include "./*"
 
-module s9234_JTAG_BSR(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
+module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
   g3222,g36,g3600,g37,g38,g39,g40,g4098,g4099,g41,g4100,g4101,g4102,g4103,
   g4104,g4105,g4106,g4107,g4108,g4109,g4110,g4112,g4121,g42,g4307,g4321,g44,
   g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
   g564,g567,g5692,g6282,g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,
   g639,g6728,g702,g705,g89,g94,g98,clockdr,updatedr,shiftdr,bs_en,TDI,TDO_BSR);
 
-  input g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
+  input CK,g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
   g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
   g41,g22,g44,g23,clockdr,updatedr,shiftdr,bs_en,TDI;
 
@@ -41,7 +41,7 @@ module s9234_JTAG_BSR(g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g3
   cut_g639,cut_g6728,cut_g702,cut_g705,cut_g89,cut_g94,cut_g98;
 
   // instantiating s9234 as CUT
-  s9234 s9234(clockdr,cut_g102,cut_g107,cut_g1290,cut_g1293,cut_g22,cut_g23,cut_g2584,
+  s9234 s9234(CK, cut_g102,cut_g107,cut_g1290,cut_g1293,cut_g22,cut_g23,cut_g2584,
   cut_g301,cut_g306,cut_g310,cut_g314,cut_g319,cut_g32,cut_g3222,cut_g36,
   cut_g3600,cut_g37,cut_g38,cut_g39,cut_g40,cut_g4098,cut_g4099,cut_g41,
   cut_g4100,cut_g4101,cut_g4102,cut_g4103,cut_g4104,cut_g4105,cut_g4106,
