@@ -1,5 +1,7 @@
 example_s27/
 test_orig/testresults/logs
 test_orig/tbdata
+test_dff/testresults/logs
+test_dff/tbdata
 *.swp
 *.pyc
