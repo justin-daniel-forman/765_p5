@@ -1,0 +1,107 @@
+
+**********************************************************************
+
+Copyright (C) 1991, Virginia Polytechnic & State University
+
+Welcome to HOPE (version 2.0) !
+
+***********************************************************************/
+
+
+
+----------------- User's guide for HOPE ----------------------------
+
+NAME:    hope --- a parallel fault simulator for
+		  synchronous sequential circuits.
+
+SYNOPSIS: hope [options] circuit_file [> outfile]
+
+OPTIONS: Several options are available for hope.
+         If an option is not specified, the default value is used.
+
+-c fn    Options are read from the file "fn".
+	 (default: online command mode)
+-D       The list of faults which are newly detected by a test pattern
+         is reported in the log file. The option -l should be
+         specified. (default: only the number of faults
+         detected is reported.)
+-f fn    Faults are defined in the file "fn".
+	 (default: faults are generated internally)
+-F fn    The good and faulty circuit outputs are reported for
+         each fault in the file fn. Naturally, no fault is dropped, 
+	 i.e., all the faults are injected and simulated in parallel
+	 for each test pattern.
+         (default: faulty circuit output is not reported.)
+-h f     Displays an example fault list format.
+-h g     Displays the on-line user's guide.
+-h n     Displays an example netlist format.
+-h t     Displays an example test pattern file.
+-h a     Displays the entire on-line manual file.
+         (default: no manual is displayed)
+-l fn    A log file named "fn" is created. 
+	 (default: no logfile is created)
+-N       Diagnostic mode
+         No fault dropping is performed, i.e., all the faults
+         are simulated for each test pattern.
+         (default: faults detected during the fault simulation are
+         dropped from the fault list.)
+-r n	 (Random pattern generation mode)
+         Test patterns are generated randomly. The fault simulation
+	 stops either when all faults are detected or n patterns
+	 are applied.  (default: -r 224)
+-s n	 Initial seed for the random number generator is set by n.
+         If n=0, random seed is generated using the day time of 
+         the computer. (default: -s 0)
+-t fn    Test patterns are provided in the file "fn"
+	 (default: random patterns are used)
+-u       Prints out all undetected faults in a file. The name of this
+         file is <ckt>.ufaults. Note that hope does not update a fault
+         file if one already exists in the run directory. This fault list
+         file can be directly read by atalanta or hope.
+         (default: no file is created)
+-U fn    The same as -u, but hope writes undetected faults to the given
+         file name.
+         (default: no file is created)
+-x	 (Potential detection mode)
+         Potentially detected faults are dropped as soon as
+         they are detected. 
+	 (default: only detected faults are dropped)
+-0	 All the flip-flops are initially set to logic 0 
+-1	 All the flip-flops are initially set to logic 1
+         (default: All the flip-flops are initially set to unknown (X).)
+
+OUTPUTS: In default mode, no file is created. The summary
+         of the fault simulation is reported to the standard
+         output. If the option -l is specified, hope
+         creates a log file. The log file contains more detailed
+         information about the fault simulation.
+ 
+ON-LINE HELP: Type hope to see the available on-line
+         help command.
+
+EXAMPLES:
+         hope -t s27.test s27.bench
+            --- simulates the circuit s27.bench using the test
+                patterns in the file "s27.test". The fault simulation
+                stops when all test patterns in the file "s27.test"
+                are simulated or all faults are detected.
+                The summary of the fault simulation is reported
+                to the standard output (CRT terminal).
+
+         hope -s 9999 -r 20000 s27.bench > s27.out
+            --- simulates the circuit s27.bench using 20000 random
+                patterns. The random pattern generator is initialized
+                by 9999. The fault simulation stops when 20000
+                random patterns are simulated or all faults are
+                detected, whichever is earlier. The summary of the 
+		fault simulation is reported to the file "s27.out".
+
+         hope -f s27.fault -t s27.test -l s27.dict -N -D s27.bench
+            --- reads the fault list from the file "s27.fault" and
+                simulates faults in a diagnostic mode, i.e., no fault
+                dropping is applied. The result of fault simulation
+                is reported in the log file "s27.dict". In the log
+                file, the list of faults detected by each test 
+		pattern is reported.
+
+

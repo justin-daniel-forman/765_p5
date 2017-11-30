@@ -1,0 +1,21 @@
+EASY-TO-READ ** do not remove, file type detection
+-- s9234.etr --
+Initial input: testresults/stil/STIL.FULLSCAN.exp_comb.logic.ex1.ts1.stil
+Converted from stil to easy-to-read
+5 vectors in file
+0 clock signals present
+3 input signals present (not including clocks)
+1 output signals preset
+
+INPUTS: in0, in1, sel
+OUTPUTS: out
+Ordering of signals corresponds to order of bits in test vector
+
+
+#	IN 	OUT
+1:	010	L
+2:	101	L
+3:	100	H
+4:	011	H
+5:	011	X
+
