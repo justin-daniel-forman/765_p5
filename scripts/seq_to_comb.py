@@ -17,30 +17,36 @@ def main():
     i_set = set()
     o_set = set()
     wire_set = set()
-    dff_set = set()
+    dff_in_set = set()
+    dff_out_set = set()
 
     with open(args.seq_ckt, "r") as seq_file:
         lines = seq_file.read().splitlines()
         for line in lines:
             list_type = line.split()[0]
             line = line.replace(' ', '')
+            line = line.replace(';', '')
             if (list_type == "input"):
-                i_set = (set)((line[len("input"):]).split(',')[0:])
+                i_set = set((line[len("input"):]).split(',')[0:])
             if (list_type == "output"):
-                o_set = (set)((line[len("output"):]).split(',')[0:])
+                o_set = set((line[len("output"):]).split(',')[0:])
             if (list_type == "wire"):
-                wire_set = (set)((line[len("wire"):]).split(',')[0:])
+                wire_set = set((line[len("wire"):]).split(',')[0:])
             if (list_type == "dff"):
-                dff_set.add((line.split(',')[-1])[:-2])
+                dff_out_set.add((line.split(',')[2]).split(")")[0])
+                dff_in_set.add((line.split(',')[0]).split("(")[1])
 
-    wire_set -= dff_set     #remove dffs from wires
-    o_set = o_set.union(dff_set)
+    wire_set -= dff_in_set     #remove dffs from wires
+    wire_set -= dff_out_set
+    i_set = i_set.union(dff_in_set)
+    o_set = o_set.union(dff_out_set)
     module_set = o_set.union(i_set)
     
     with open(args.comb_ckt, "w+") as comb_file:
         comb_file.write("Module I/O: %s"%",".join(str(e) for e in module_set))
-        comb_file.write("\nOutputs: %s"%",".join(str(e) for e in o_set))
-        comb_file.write("\nWires: %s"%",".join(str(e) for e in wire_set))
+        comb_file.write("\n\nInputs: %s"%",".join(str(e) for e in i_set))
+        comb_file.write("\n\nOutputs: %s"%",".join(str(e) for e in o_set))
+        comb_file.write("\n\nWires: %s"%",".join(str(e) for e in wire_set))
 
     comb_file.close()
 

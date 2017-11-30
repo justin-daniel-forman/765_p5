@@ -1,3 +1,5 @@
 example_s27/
+test_orig/testresults/logs
+test_orig/tbdata
 *.swp
 *.pyc
