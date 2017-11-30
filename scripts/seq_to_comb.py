@@ -24,14 +24,17 @@ def main():
         for line in lines:
             list_type = line.split()[0]
             line = line.replace(' ', '')
+            line = line.replace(';', '')
             if (list_type == "input"):
-                i_set = (set)((line[len("input"):]).split(',')[0:])
+                i_set = set((line[len("input"):]).split(',')[0:])
             if (list_type == "output"):
-                o_set = (set)((line[len("output"):]).split(',')[0:])
+                o_set = set((line[len("output"):]).split(',')[0:])
             if (list_type == "wire"):
-                wire_set = (set)((line[len("wire"):]).split(',')[0:])
+                wire_set = set((line[len("wire"):]).split(',')[0:])
             if (list_type == "dff"):
-                dff_set.add((line.split(',')[-1])[:-2])
+                dff_set.add((line.split(',')[0]).split("(")[1])
+                
+    print(dff_set)
 
     wire_set -= dff_set     #remove dffs from wires
     o_set = o_set.union(dff_set)
