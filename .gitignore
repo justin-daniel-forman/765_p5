@@ -5,3 +5,7 @@ test_dff/testresults/logs
 test_dff/tbdata
 *.swp
 *.pyc
+verilog/csrc/
+verilog/simv
+verilog/simv.daidir/
+verilog/ucli.key
