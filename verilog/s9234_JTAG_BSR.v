@@ -6,12 +6,12 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
   g564,g567,g5692,g6282,g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,
   g639,g6728,g702,g705,g89,g94,g98,clockdr_is,updatedr_is,shiftdr_is,clockdr,
-  updatedr,shiftdr,bs_en,TDI_BSR,TDO_BSR,TDI_ISR,TDO_ISR);
+  updatedr,shiftdr,bs_en,TDI,TDO_BSR,TDO_ISR);
 
   input CK,g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
   g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
-  g41,g22,g44,g23,clockdr_is,updatedr_is,shiftdr_is,clockdr_bs,updatedr_bs,
-  shiftdr_bs,bs_en,TDI_BSR,TDI_ISR;
+  g41,g22,g44,g23,clockdr_is,updatedr_is,shiftdr_is,clockdr,updatedr,
+  shiftdr,bs_en,TDI;
 
   output g2584,g3222,g3600,g4307,g4321,g4422,g4809,g5137,g5468,g5469,g5692,g6282,
   g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,g6728,g1290,g4121,
@@ -53,10 +53,10 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   cut_g562,cut_g563,cut_g564,cut_g567,cut_g5692,cut_g6282,cut_g6284,cut_g6360,
   cut_g6362,cut_g6364,cut_g6366,cut_g6368,cut_g6370,cut_g6372,cut_g6374,
   cut_g639,cut_g6728,cut_g702,cut_g705,cut_g89,cut_g94,cut_g98,updatedr_is,
-  shiftdr_is,bs_en,TDI_ISR,TDO_ISR);
+  shiftdr_is,bs_en,TDI,TDO_ISR);
 
   // input scan registers
-  SFF sff_g89(TDI_BSR,g89,clockdr,updatedr,shiftdr,bs_en,tdi_g94,cut_g89);
+  SFF sff_g89(TDI,g89,clockdr,updatedr,shiftdr,bs_en,tdi_g94,cut_g89);
   SFF sff_g94(tdi_g94,g94,clockdr,updatedr,shiftdr,bs_en,tdi_g98,cut_g94);
   SFF sff_g98(tdi_g98,g98,clockdr,updatedr,shiftdr,bs_en,tdi_g102,cut_g98);
   SFF sff_g102(tdi_g102,g102,clockdr,updatedr,shiftdr,bs_en,tdi_g107,cut_g102);

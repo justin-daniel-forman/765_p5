@@ -38,18 +38,8 @@ module TOP_TB();
         //$monitor($stime,, "TRST: %b, TDI: %b, TMS: %b", TRST, TDI, TMS);
 
         reset_fsm();
-        shift_into_ir(2'b00);
-        shift_into_ext_dr(35'h0);
         shift_into_ir(2'b10);
         shift_into_int_dr(211'h0);
-
-        //Clock one cycle into the circuit
-        @(posedge CK);
-
-        shift_into_ir(2'b00);
-        shift_out_ext_data(r_ext);
-
-        shift_into_ir(2'b10);
         shift_out_int_data(r_int);
 
         $finish;
