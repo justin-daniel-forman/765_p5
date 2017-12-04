@@ -31,26 +31,26 @@ module TOP_TB();
     end
 
     //Begin Test bench
-    integer jj;
-    reg [38:0] r;
+    reg [38:0]  r_ext;
+    reg [210:0] r_int;
     initial begin
 
         //$monitor($stime,, "TRST: %b, TDI: %b, TMS: %b", TRST, TDI, TMS);
 
         reset_fsm();
         shift_into_ir(2'b00);
-        shift_into_dr(35'h0);
-        //shift_into_dr(35'h0deadbeef);
+        shift_into_ext_dr(35'h0);
+        shift_into_ir(2'b10);
+        shift_into_int_dr(211'h0);
 
-        //Run the test
-        jj = 0;
-        while(jj < 100) begin
-            @(posedge CK);
-            @(posedge TCLK);
-            jj = jj + 1;
-        end
+        //Clock one cycle into the circuit
+        @(posedge CK);
 
-        shift_out_data(r);
+        shift_into_ir(2'b00);
+        shift_out_ext_data(r_ext);
+
+        shift_into_ir(2'b10);
+        shift_out_int_data(r_int);
 
         $finish;
     end
@@ -79,7 +79,7 @@ module TOP_TB();
 
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the BSR
-    task shift_into_dr(input [34:0] v);
+    task shift_into_ext_dr(input [34:0] v);
         integer ii;
         begin
             TDI = 0;
@@ -152,6 +152,41 @@ module TOP_TB();
         end
     endtask
 
+    //Starts in the Run Test State and ends in the Run Test State
+    //Shifts the vector v into the Internal Scan Register
+    task shift_into_int_dr(input [210:0] v);
+        integer ii;
+        begin
+            TDI = 0;
+            TMS = 1;
+            @(posedge TCLK); //Advance to Select DR Scan
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to Capture DR
+            @(posedge TCLK); //Advance to Shift DR
+
+            ii = 0;
+            while(ii < 211) begin
+
+                TDI = v[ii];
+                @(posedge TCLK); //Shift in test vector bit
+
+                // Return back to the initial state if we aren't done
+                if(ii == 210) begin
+
+                    TMS = 1;
+                    @(posedge TCLK); //Advance to Exit1 DR
+                    @(posedge TCLK); //Advance to Update DR
+
+                    TMS = 0;
+                    @(posedge TCLK); //Advance to Run Test
+                    @(posedge TCLK);
+
+                end
+                ii = ii + 1;
+            end
+        end
+    endtask
 
     //TODO: Runs some test
     task run_test();
@@ -162,7 +197,7 @@ module TOP_TB();
     endtask
 
     //Outputs the vector that is obtained from running the test
-    task shift_out_data(output reg[38:0] result);
+    task shift_out_ext_data(output reg[38:0] result);
         integer ii;
         begin
             TMS = 1;
@@ -191,6 +226,35 @@ module TOP_TB();
          end
     endtask;
 
+    //Outputs the vector that is obtained from running the test
+    task shift_out_int_data(output reg[210:0] result);
+        integer ii;
+        begin
+            TMS = 1;
+            @(posedge TCLK); //Advance to Select DR Scan
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to Capture DR
+            @(posedge TCLK);
+
+            ii = 0;
+            result = 0;
+            while(ii < 211) begin
+                result = result | (TDO << ii);
+                @(posedge TCLK);
+                ii = ii + 1;
+            end
+
+            TMS = 1;
+            @(posedge TCLK); //Advance to Exit1DR
+            @(posedge TCLK); //Advance to UpdateDR
+
+            TMS = 0;
+            @(posedge TCLK); //Advance to IDLE
+
+            $display("Result: %h", result);
+         end
+    endtask;
 
     //Starts in the Run Test state and ends in the Run Test state
     task shift_into_ir (input [0:1] v);
