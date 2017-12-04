@@ -36,10 +36,14 @@ module TOP_TB();
     initial begin
 
         //$monitor($stime,, "TRST: %b, TDI: %b, TMS: %b", TRST, TDI, TMS);
+        assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
+        g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
+        g41,g22,g44,g23} = 0;
 
         reset_fsm();
         shift_into_ir(2'b10);
         shift_into_int_dr(211'h0);
+        @(posedge CK);
         shift_out_int_data(r_int);
 
         $finish;
@@ -176,6 +180,7 @@ module TOP_TB();
                 ii = ii + 1;
             end
         end
+
     endtask
 
     //TODO: Runs some test
