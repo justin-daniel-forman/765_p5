@@ -45,7 +45,7 @@ module s9234_JTAG_TOP(TMS,CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,
   g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
   g564,g567,g5692,g6282,g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,
   g639,g6728,g702,g705,g89,g94,g98,clockdr_is,updatedr_is,shiftdr_is,clockdr_bs,
-  updatedr_bs,shiftdr_bs,TMS,TDI,TDO_BSR,TDO_ISR);
+  updatedr_bs,shiftdr_bs,TMS,TDI,TDO_BSR,TDO_ISR,TRST,TCLK);
 
   // instantiating instruction registers
   IR inst_regs(clockir, shiftir, updateir, TDI, inst, TDO_IR);
