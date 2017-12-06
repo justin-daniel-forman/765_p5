@@ -31,6 +31,40 @@ module SFF(
 
 endmodule //SFF
 
+module int_SFF(
+    input   wire TDI,       //Scan chain input
+    input   wire hold,      //Hold the dout=din when asserted
+    input   wire din,       //System data in
+    input   wire clockdr,   //Clock for capture ff
+    input   wire updatedr,  //Clock for update ff
+    input   wire shiftdr,   //Selects between system data and scan chain input
+    input   wire TMS,       //Selects between scanchain and test for output
+    input   wire TMS_delay, //Used to hold the output of the update reg
+    output  wire TDO,       //Scan chain output
+    output  wire dout       //System data out
+);
+
+    wire sl_mux; //shift-load
+    wire tn_mux; //test-normal
+    wire capture_out;
+    wire update_out;
+
+    assign sl_mux = (shiftdr & ~hold) ? TDI : din;
+
+    udff capture_ff (capture_out, clockdr, sl_mux);
+    assign TDO = capture_out;
+
+    udff update_ff  (update_out, updatedr, capture_out);
+
+    //To get normal mode, TMS=global_TDI=1
+    //To hold values of scan, keep global TDI=0 while performing test
+    assign tn_mux  = (1'b1) ? capture_out : update_out;
+    assign dout    = tn_mux;
+
+endmodule //int_SFF
+
+//TODO: Create SFF LSFR module to double as LSFR
+//This will be used for BIST
 
 // Chain of ffs to store the JTAG instruction
 module IR (
