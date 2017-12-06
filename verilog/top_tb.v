@@ -117,8 +117,9 @@ module TOP_TB();
         g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
         g41,g22,g44,g23} = 0;
 
-        TMS = 1;
-        TDI = 1;
+        TMS  = 1;
+        TDI  = 1;
+        TRST = 1;
         @(posedge CK);
         @(posedge CK);
         @(posedge CK);
@@ -130,7 +131,7 @@ module TOP_TB();
         shift_into_ir(2'b00);
         shift_into_ext_dr(35'b0);
 
-        TDI = 0; //use scanned values for test
+        TDI  = 0; //use scanned values for test
         @(posedge CK);
         @(posedge CK);
         @(posedge CK);
@@ -202,7 +203,7 @@ module TOP_TB();
                 ii = ii + 1;
             end
 
-            $display("DR contains: %h", {
+            $display("%d: DR contains: %h", $stime, {
                 DUT.BSR.sff_g89.TDO,
                 DUT.BSR.sff_g94.TDO,
                 DUT.BSR.sff_g98.TDO,
