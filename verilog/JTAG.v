@@ -2,11 +2,12 @@
 // to form a larger scan chain.
 module SFF(
     input   wire TDI,       //Scan chain input
+    input   wire hold,      //Hold the dout=din when asserted
     input   wire din,       //System data in
     input   wire clockdr,   //Clock for capture ff
     input   wire updatedr,  //Clock for update ff
     input   wire shiftdr,   //Selects between system data and scan chain input
-    input   wire bs_en,     //Selects between scanchain and test for output
+    input   wire TMS,       //Selects between scanchain and test for output
     output  wire TDO,       //Scan chain output
     output  wire dout       //System data out
 );
@@ -22,8 +23,11 @@ module SFF(
     assign TDO = capture_out;
 
     udff update_ff  (update_out, updatedr, capture_out);
-    assign tn_mux = (bs_en) ? update_out : din;
-    assign dout     = tn_mux;
+
+    //To get normal mode, TMS=global_TDI=1
+    //To hold values of scan, keep global TDI=0 while performing test
+    assign tn_mux  = (TMS & hold) ? din : update_out;
+    assign dout    = tn_mux;
 
 endmodule //SFF
 
