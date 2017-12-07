@@ -1,0 +1,59 @@
+ -- s27_comb.Tp5map --
+
+Project 5 mapping file template
+File used to define scan chains for use with 'p5serialize.py' script
+
+
+** Input/output definitions do not need modification
+INPUTS: G0, G1, G2, G3, G5, G6, G7
+OUTPUTS: G10, G11, G13, G17
+
+
+** EACH OF THE ABOVE SIGNALS MUST BE ASSIGNED TO ONE OF THE FOLLOWING GROUPS **
+
+** All signal group definitions must be on the same line **** Which of the inputs/outputs are to remain primary I/Os?
+PRIMARY_INPUTS: G0, G1, G2, G3
+PRIMARY_OUTPUTS: G17
+
+** Which of the inputs/outputs are being used in boundary scan cells?
+INPUT_BS_SIGNALS: 
+OUTPUT_BS_SIGNALS: 
+
+** Which of the inputs/outputs correspond to internal scan flip flops?
+** If 'A_in' (PO of comb circuit) is the serial input to the scan flip flop and
+**    'A_out' (PI of comb circuit) is the serial output of the scan flip flop
+** Use form:    'A_in+A_out, ...'
+SCAN_PAIRS: G10+G5, G11+G6, G13+G7
+
+
+
+** Define clock or control signals if desired.
+** Clock signals will contain an initial 0 followed by pulses.
+** Control signals can be assigned a cycle using the form:
+**	'CNTLA=1, CNTLB=1110, CNTLC=ABC'
+** If value is not assigned for control signal the value '%' will be given
+CLOCKS: CK
+CONTROLS: scan_en=1110
+
+
+** How many filler vectors should print before stimulating PIs or reading POs?
+** Use digit, or leave blank if no added vectors are desired
+ADD_VECTORS_BEFORE_IO: 0
+
+** How many filler vectors should print at the end of each cycle?
+** Use digit, or leave blank if no added vectors are desired
+END_OF_CYCLE_VECTORS: 0
+
+
+** User defines scan chains to produce corresponding serialized output
+** Scan in port and scan out port will be created automatically
+** Definition should be in following form 
+**  Use form:
+**	SCAN_CHAIN <name>: <signal 1>, <signal 2>,  ... , <signal n>
+**  For scan chain with order:
+**	>|SI_<name>| >> signal 1 > signal 2 >  ... > signal n >> |SO_name|>
+** Multiple scan chains can be defined
+** For internal scan FFs give only the serial input signal (comb circuit output)
+** Reference help document 'Project 5 Scripts Help' for details on serialization
+SCAN_CHAIN scan: G10, G11, G13
+

@@ -1,0 +1,187 @@
+STIL 1.0; 
+
+//***************************************************************************//
+//                             STIL VECTOR FILE                              //
+//  Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)  //
+//***************************************************************************//
+//                                                                           //
+//  FILE CREATED..............November 28, 2017 at 12:02:01                  //
+//                                                                           //
+//  PROJECT NAME..............s27_comb                                       //
+//                                                                           //
+//  TESTMODE..................FULLSCAN                                       //
+//                                                                           //
+//  INEXPERIMENT..............exp_comb                                       //
+//                                                                           //
+//  TDR.......................dummy.tdr                                      //
+//                                                                           //
+//  TEST PERIOD...............80.000   TEST TIME UNITS...........ns          //
+//  TEST PULSE WIDTH..........8.000                                          //
+//  TEST STROBE OFFSET........72.000   TEST STROBE TYPE..........edge        //
+//  TEST BIDI OFFSET..........0.000                                          //
+//  TEST PI OFFSET............0.000    X VALUE...................Z           //
+//                                                                           //
+//                                     SCAN OVERLAP..............yes         //
+//  SCAN PERIOD...............80.000   SCAN TIME UNITS...........ns          //
+//  SCAN PULSE WIDTH..........8.000                                          //
+//  SCAN STROBE OFFSET........0.000    SCAN STROBE TYPE..........edge        //
+//  SCAN BIDI OFFSET..........0.000                                          //
+//  SCAN PI OFFSET............0.000    X VALUE...................Z           //
+//                                                                           //
+//                                                                           //
+//   Individually set PIs                                                    //
+//  Active TESTMODEs TM = 1 ..FULLSCAN                                       //
+//                                                                           //
+//  EXPERIMENT................1  Name = exp_comb                             //
+//  DATA FORMAT...............binary                                         //
+//                                                                           //
+//  TEST SECTION..............1        TEST SECTION TYPE.........logic       //
+//                                                                           //
+//  The range of Tests in this Test Section......................1:7         //
+//                                                                           //
+//  TESTER TERMINATION........none     TERMINATION DOMINATION....tester      //
+//                                                                           //
+//***************************************************************************//
+
+  Include "STIL.FULLSCAN.exp_comb.signals.stil"; 
+
+//***************************************************************************//
+//                            TIMING DEFINITIONS                             //
+//***************************************************************************//
+
+  Timing { 
+
+    WaveformTable "test_cycle" { Period '80.000000ns'; 
+      Waveforms { 
+        "G0" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G1" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G2" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G3" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G5" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G6" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G7" { 01Z  { '0.000000ns' D/U/Z; } } 
+        "G10" { LHTX { '0ns' X/X/X/X; '72.000000ns' L/H/T/X; } } 
+        "G11" { LHTX { '0ns' X/X/X/X; '72.000000ns' L/H/T/X; } } 
+        "G13" { LHTX { '0ns' X/X/X/X; '72.000000ns' L/H/T/X; } } 
+        "G17" { LHTX { '0ns' X/X/X/X; '72.000000ns' L/H/T/X; } } 
+    } } 
+} 
+
+//***************************************************************************//
+//                               TEST VECTORS                                //
+//***************************************************************************//
+
+PatternBurst 
+  MAIN_BRST { Termination { "ALLPOs" TerminateOff; } 
+              PatList { MAIN_TEST; } } 
+
+PatternExec 
+  MAIN_EXEC { PatternBurst MAIN_BRST; } 
+
+Pattern 
+  MAIN_TEST { 
+
+//***************************************************************************//
+//  TESTER LOOP...............1        PROCEDURES HAVE MEMORY....no          //
+//                                                                           //
+//  The range of Tests in this Tester Loop.......................1:7         //
+//                                                                           //
+//  TEST PROCEDURE............1        TYPE......................init        //
+//  SLOW TO TURN OFF..........false    SEQUENCES HAVE MEMORY.....no          //
+//  TEST SEQUENCE.............         TYPE......................init        //
+//***************************************************************************//
+
+
+//***************************************************************************//
+//  TEST PROCEDURE............2        TYPE......................normal      //
+//                                                                           //
+//  The range of Tests in this Test Procedure....................1:5         //
+//                                                                           //
+//  SLOW TO TURN OFF..........false    SEQUENCES HAVE MEMORY.....no          //
+//  STATIC FAULTS.............55       PERCENT STATIC FAULTS.....94.827583   //
+//  TEST SEQUENCE.............1        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.2.1.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.2.1.2.1;  Measure_PO; 
+  "1.1.1.2.1.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 1100000; 
+    "ALLPOs" = HLHH; } 
+
+//***************************************************************************//
+//  TEST SEQUENCE.............2        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.2.2.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.2.2.2.1;  Measure_PO; 
+  "1.1.1.2.2.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 1001000; 
+    "ALLPOs" = LHLL; } 
+
+//***************************************************************************//
+//  TEST SEQUENCE.............3        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.2.3.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.2.3.2.1;  Measure_PO; 
+  "1.1.1.2.3.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 0000111; 
+    "ALLPOs" = LLHH; } 
+
+//***************************************************************************//
+//  TEST SEQUENCE.............4        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.2.4.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.2.4.2.1;  Measure_PO; 
+  "1.1.1.2.4.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 0010011; 
+    "ALLPOs" = LHLL; } 
+
+//***************************************************************************//
+//  TEST SEQUENCE.............5        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.2.5.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.2.5.2.1;  Measure_PO; 
+  "1.1.1.2.5.2": 
+  Macro "TEST" { 
+    "ALLPIs" = \r7 0 ; 
+    "ALLPOs" = LLLH; } 
+
+//***************************************************************************//
+//  TEST PROCEDURE............3        TYPE......................normal      //
+//                                                                           //
+//  The range of Tests in this Test Procedure....................6:7         //
+//                                                                           //
+//  SLOW TO TURN OFF..........false    SEQUENCES HAVE MEMORY.....no          //
+//  STATIC FAULTS.............3        PERCENT STATIC FAULTS.....100.000000  //
+//  TEST SEQUENCE.............6        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.3.1.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.3.1.2.1;  Measure_PO; 
+  "1.1.1.3.1.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 1000010; 
+    "ALLPOs" = HLLH; } 
+
+//***************************************************************************//
+//  TEST SEQUENCE.............7        TYPE......................normal      //
+//***************************************************************************//
+
+//  Processing the Static: EVENT 1.1.1.3.2.1.1;  Stim_PI; 
+//  Processing the Static: EVENT 1.1.1.3.2.2.1;  Measure_PO; 
+  "1.1.1.3.2.2": 
+  Macro "TEST" { 
+    "ALLPIs" = 0101000; 
+    "ALLPOs" = LLHH; } 
+// Inserted final non-scan Pattern
+  Macro "TEST" { 
+    "ALLPIs" = 0101000; 
+    "ALLPOs" = XXXX; } 
+  } 

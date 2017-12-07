@@ -1,0 +1,77 @@
+STIL 1.0; 
+
+//***************************************************************************//
+//                             STIL SIGNALS FILE                             //
+//  Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)  //
+//***************************************************************************//
+//                                                                           //
+//  FILE CREATED..............November 28, 2017 at 12:02:01                  //
+//                                                                           //
+//  PROJECT NAME..............s27_comb                                       //
+//                                                                           //
+//  TESTMODE..................FULLSCAN                                       //
+//                                                                           //
+//  INEXPERIMENT..............exp_comb                                       //
+//                                                                           //
+//  TDR.......................dummy.tdr                                      //
+//                                                                           //
+//  TEST PERIOD...............80.000   TEST TIME UNITS...........ns          //
+//  TEST PULSE WIDTH..........8.000                                          //
+//  TEST STROBE OFFSET........72.000   TEST STROBE TYPE..........edge        //
+//  TEST BIDI OFFSET..........0.000                                          //
+//  TEST PI OFFSET............0.000    X VALUE...................Z           //
+//                                                                           //
+//                                     SCAN OVERLAP..............yes         //
+//  SCAN PERIOD...............80.000   SCAN TIME UNITS...........ns          //
+//  SCAN PULSE WIDTH..........8.000                                          //
+//  SCAN STROBE OFFSET........0.000    SCAN STROBE TYPE..........edge        //
+//  SCAN BIDI OFFSET..........0.000                                          //
+//  SCAN PI OFFSET............0.000    X VALUE...................Z           //
+//                                                                           //
+//                                                                           //
+//   Individually set PIs                                                    //
+//  Active TESTMODEs TM = 1 ..FULLSCAN                                       //
+//                                                                           //
+//***************************************************************************//
+
+//***************************************************************************//
+//                              DEFINE SIGNALS                               //
+//***************************************************************************//
+
+  Signals { 
+    "G0" In;      // pinName = G0; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G1" In;      // pinName = G1; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G2" In;      // pinName = G2; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G3" In;      // pinName = G3; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G5" In;      // pinName = G5; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G6" In;      // pinName = G6; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G7" In;      // pinName = G7; testOffset = 0.000000;  scanOffset = 0.000000;  
+    "G10" Out;      // pinName = G10; 
+    "G11" Out;      // pinName = G11; 
+    "G13" Out;      // pinName = G13; 
+    "G17" Out;      // pinName = G17; 
+  } 
+
+//***************************************************************************//
+//                           DEFINE SIGNAL GROUPS                            //
+//***************************************************************************//
+
+  SignalGroups { 
+
+    "ALLPIs" = '"G0"+"G1"+"G2"+"G3"+"G5"+"G6"+"G7"'; 
+
+    "ALLPOs" = '"G10"+"G11"+"G13"+"G17"'; 
+
+  } 
+
+//***************************************************************************//
+//                               DEFINE MACROS                               //
+//***************************************************************************//
+
+  MacroDefs { 
+
+    "TEST" { WaveformTable "test_cycle"; 
+      Vector { 
+        "ALLPOs" = %; 
+        "ALLPIs" = %; } } 
+} 

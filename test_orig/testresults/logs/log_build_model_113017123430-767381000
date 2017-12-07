@@ -1,0 +1,104 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            build_model stepid=pd__build_model_113017123430-767381000 workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig designsource=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/scratch,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5,/afs/ece.cmu.edu/usr/dsoung/Private/18765/project1  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Nov 30 12:34:31 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 26334.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig
+
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/logs/log_build_model_113017123430-767381000
+            stepid=pd__build_model
+            DESIGNSOURCE=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/scratch,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5,/afs/ece.cmu.edu/usr/dsoung/Private/18765/project1
+[end TDA_009]
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+
+Search Order  1:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v"
+Search Order  2:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/scratch"
+Search Order  3:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5"
+Search Order  4:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/project1"
+
+
+
+Reading Verilog data from /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v
+
+module s9234(gg457,g6502,g6600,g266,g616,g697,g1289,g242,g193,g520,g6595,g4108,g293,g683,g6582,g5472,g6587,g6800,g5147,g3230,g341,g327,g690,g532,g402,g3232,g665,g5698,g5470,g445,g478,g175,g398,g610,g336,g6500,g465,g374,g642,g337,g687,g4150,g48,g422,g6366,g4853,g6505,g5328,g33,g6372,g118,g49,g4425,g3229,g292,g6362,g43,g406,g2586,g4856,g5491,g32,g3233,g111,g6840,g4850,g5475,g24,g500,g283,g663,g314,g6745,g3225,g6401,g98,g449,g554,g179,g6404,g696,g6801,g679,g5473,g658,g25,g4849,g4845,g6509,g2585,g301,g46,g6360,g5582,g212,g205,g4119,g639,g5699,g4115,g326,g646,g6284,g461,g204,g236,g349,g5877,g306,g4114,g680,g6403,g23,g2,g672,g4106,g574,g29,g386,g688,g418,g5875,g6406,g677,g496,g4105,g39,g1293,g248,g4848,g6374,g485,g260,g5476,g382,g6721,g378,g504,g453,g6842,g6592,g28,g209,g4854,g4149,g6107,g269,g689,g562,g6,g143,g414,g693,g685,g5581,g44,g675,g38,g4107,g686,g4129,g3238,g4143,g281,g6498,g4120,g567,g4657,g486,g4136,g4109,g288,g3228,g166,g5696,g560,g3,g516,g2584,g508,g323,g6102,g6364,g4846,g94,g602,g564,g284,g594,g6105,g6583,g6593,g59,g6501,g681,g6729,g6823,g4839,g492,g5489,g6590,g5477,g4125,g4426,g5694,g5140,g6602,g6839,g669,g430,g230,g5874,g282,g10,g705,g5876,g6825,g4844,g667,g4840,g654,g4148,g197,g79,g18,g84,g161,g5697,g42,g310,g22,g6278,g4852,g6512,g4132,g4658,g3231,g625,g598,g6594,g5139,g6510,g4138,g289,g131,g4102,g5580,g41,g434,g6824,g6596,g4134,g4118,g122,g290,g6722,g6497,g6841,g119,g524,g1291,g6727,g6277,g559,g4422,g4131,g3236,g6503,g123,g276,g489,g4124,g4101,g7,g6941,g3237,g102,g426,g5478,g3234,g6588,g394,g691,g6511,g5329,g135,g206,g139,g1,g3224,g512,g695,g6106,g11,g5480,g668,g287,g4147,g4112,g6104,g4113,g4321,CK,g5471,g6282,g127,g6589,g684,g184,g662,g37,g128,g6726,g5148,g353,g571,g650,g6584,g366,g4139,g278,g6508,g280,g361,g4858,g4843,g4307,g291,g6507,g6826,g578,g631,g4135,g410,g157,g328,g4098,g6504,g6370,g279,g5479,g3235,g4133,g4130,g4424,g4847,g6720,g277,g6725,g6100,g4146,g357,g5878,g3240,g210,g4142,g208,g4126,g6506,g666,g4841,g5490,g338,g6103,g4423,g6723,g545,g548,g5700,g4128,g6744,g6601,g541,g613,g148,g5468,g11
+                 |
+ncvlog: *E,UNDIDN (/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v,3|17): 'gg457': undeclared identifier [12.5(IEEE)].
+input g41,g6502,g6824,g6596,g6600,g4134,g4118,g6722,g1289,g6497,g6841,g6595,g6582,g5472,g1291,g6727,g559,g6277,g6587,g6800,g5147,g3230,g4131,g3236,g6503,g3232,g5698,g5470,g4124,g6941,g3237,g102,g6500,g5478,g4150,g3234,g6588,g6511,g5329,g4853,g6505,g5328,g3224,g4425,g3229,g6106,g5480,g2586,g4147,g4856,g5491,g6104,g32,g3233,g4113,g6840,g4850,g5475,CK,g5471,g314,g6745,g3225,g6401,g6589,g98,g6404,g6801,g37,g6726,g5148,g6584,g5473,g4849,g4845,g4139,g6509,g6508,g2585,g4858,g4843,g301,g46,g6507,g5582,g6826,g4119,g639,g4135,g5699,g4115,g6504,g5877,g306,g4114,g6403,g23,g5479,g3235,g4133,g4130,g4424,g4847,g6720,g6725,g6100,g5875,g5878,g3240,g6406,g4146,g4142,g4126,g6506,g39,g4841,g5490,g4848,g6103,g4423,g6723,g5476,g5700,g6721,g4128,g6842,g6592,g6744,g6601,g4854,g4149,g6107,g4144,g6585,g557,g562,g5693,g4141,g4137,g1831,g6599,g6854,g563,g1294,g6925,g5581,g44,g5330,g38,g4129,g3238,g4143,g6498,g89,g4120,g567,g4657,g4136,g3228,g5696,g560,g6102,g4842,g4140,g4846,g94,g558,g564,g6105,g6583,g5141,g4857,g4123,g319,g6593,g6501,g6586,g4851,g1288,g6729,g6823,g4839,g4659,g6402,g6407,g4127,g5489,g6590,g5477,g4125,g2587,g5694,g3241,g6598,g4426,g36,g5140,g6602,g6597,g5874,g4145,g3226,g6839,g5695,g5474,g705,g5138,g6101,g47,g5876,g6940,g6825,g4844,g6499,g6827,g4122,g4840,g702,g4148,g4116,g5697,g4855,g40,g42,g310,g22,g6278,g4852,g561,g3239,g6512,g6853,g4132,g4658,g107,g45,g3231,g6405,g6594,g6724,g5139,g6591,g3227,g6510,g4138,g4117,g1292,g5580;
+              |
+ncvlog: *E,NOPORT (/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_comb.v,5|14): input/output/inout 'g457' not declared in port list [12.3.2(IEEE)].
+WARNING (TEI-813): [Severe] Build Model NC (IEEE 2001 Standard) Verilog Parser: 
+           return code of 1 received from ncvlog process.  It is recommended  
+           to check for ncvlog messages in the Build Model log.  [end TEI_813] 
+NC Verilog Parser complete - 0 modules, 0 gates, 0 user defined primitives.
+
+INFO (TEI-003): The 'cell noCellNameFound' was selected as the top cell.   [end TEI_003] 
+ERROR (TEI-002): The 'cell noCellNameFound' was not found in the design source file(s) specified.   Note that for Verilog, a change has been made to no longer automatically search the directories for explicitly specified files. Therefore it may now be necessary to add the directory of this missing cell to build the complete design.  [end TEI_002] 
+ERROR (TEI-400): Build Model FAILED:
+  Cell named 'noCellNameFound' could not be resolved
+  Unexpected Model Build Failure
+  [end TEI_400] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           36,481,696  bytes
+
+                      CPU Time =    0:00:00.01
+                  Elapsed Time =    0:00:01.75                    [end TDA_001]
+
+
+
+INFO (TEI-200): Build Model - Controller completed. [end TEI_200] 
+
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-003): The 'cell noCellNameFound' was selected as the top cell.    
+      1 INFO (TEI-195): Build Model - Controller starting:  
+      1 INFO (TEI-200): Build Model - Controller completed.  
+
+  WARNING [Severe] Messages...
+      1 WARNING (TEI-813): [Severe] Build Model NC (IEEE 2001 Standard) Verilog Parser: 
+
+  ERROR Messages...
+      1 ERROR (TEI-002): The 'cell noCellNameFound' was not found in the design source file(s) specified.   Note that for Verilog, a change has been made to no longer automatically search the directories for explicitly specified files. Therefore it may now be necessary to add the directory of this missing cell to build the complete design.   
+      1 ERROR (TEI-400): Build Model FAILED:
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************

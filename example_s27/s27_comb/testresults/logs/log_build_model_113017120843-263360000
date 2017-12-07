@@ -1,0 +1,85 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            build_model stepid=true_time_build_model__build_model_113017120843-263360000 teiperiod=_dOt_ workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/example_s27/s27_comb truetime=yes  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Nov 30 12:08:43 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 23231.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/example_s27/s27_comb
+
+            teiperiod=_dOt_
+            truetime=yes
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/example_s27/s27_comb/testresults/logs/log_build_model_113017120843-263360000
+            stepid=true_time_build_model__build_model
+[end TDA_009]
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+ERROR (TFW-901): Required keyword DESIGNSOURCE must be specified.  [end TFW_901] 
+
+ERROR (TFW-926): Syntax checking detected terminating errors.  Correct the errors noted in preceding messages and rerun.  [end TFW_926] 
+
+INFO (TDA-005): Command Line Invocation: 
+            TEImport SOURCE=  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Nov 30 12:08:43 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 23236.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+
+[end TDA_009]
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-195): Build Model - Controller starting:  
+
+  ERROR Messages...
+      1 ERROR (TFW-901): Required keyword DESIGNSOURCE must be specified.   
+      1 ERROR (TFW-926): Syntax checking detected terminating errors.  Correct the errors noted in preceding messages and rerun.   
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************

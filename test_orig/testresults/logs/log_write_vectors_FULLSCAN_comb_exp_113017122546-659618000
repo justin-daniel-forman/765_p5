@@ -1,0 +1,94 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            write_vectors stepid=pd__write_vectors_113017122546-659618000 language=stil inexperiment=comb_exp testmode=FULLSCAN workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Nov 30 12:25:47 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 25048.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig
+            TESTMODE=FULLSCAN
+
+            INEXPERIMENT=comb_exp
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/logs/log_write_vectors_FULLSCAN_comb_exp_113017122546-659618000
+            stepid=pd__write_vectors
+            language=stil
+[end TDA_009]
+INFO (TVE-001): STIL write vectors started.   [end TVE_001] 
+INFO (TVE-004): Reading test section 1.1.  Test section type equals logic.   [end TVE_004] 
+INFO (TVE-003): STIL write vectors output file will be: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/stil/cycleMap.FULLSCAN.comb_exp.   [end TVE_003] 
+INFO (TVE-003): STIL write vectors output file will be: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/stil/STIL.FULLSCAN.comb_exp.logic.ex1.ts1.stil.   [end TVE_003] 
+INFO (TVE-005): Created 8 total cycles, of which 8 are test cycles, 0 are scan cycles, 0 are dynamic timed cycles and 0 are dynamic cycles that are not timed.   [end TVE_005] 
+INFO (TVE-003): STIL write vectors output file will be: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/stil/STIL.FULLSCAN.comb_exp.signals.stil.   [end TVE_003] 
+
+INFO (TVE-050):         TEST SEQUENCE COVERAGE SUMMARY REPORT  
+    Test       | Global   | Global   | Global   | Global   | Global   | Global   | Sequence   | Overlapped | Total      | 
+    Sequence   | Static   | Static   | Static   | Dynamic  | Dynamic  | Dynamic  | Cycle      | Cycle      | Cycle      | 
+               | Total    | Delta    | Adjusted | Total    | Delta    | Adjusted | Count      | Count      | Count      | 
+               | Coverage | Coverage | Total    | Coverage | Coverage | Total    |            |            |            | 
+               |          |          | Coverage |          |          | Coverage |            |            |            | 
+     1.1.1.1.1 |  0.00    |  0.00    |  0.00    |  0.00    |  0.00    |  0.00    |          0 |          0 |          0 |
+     1.1.1.2.1 |  29.31   |  29.31   |  29.31   |  0.00    |  0.00    |  0.00    |          1 |          0 |          1 |
+     1.1.1.2.2 |  63.79   |  34.48   |  63.79   |  0.00    |  0.00    |  0.00    |          1 |          0 |          2 |
+     1.1.1.2.3 |  75.86   |  12.07   |  75.86   |  0.00    |  0.00    |  0.00    |          1 |          0 |          3 |
+     1.1.1.2.4 |  86.21   |  10.34   |  86.21   |  0.00    |  0.00    |  0.00    |          1 |          0 |          4 |
+     1.1.1.2.5 |  94.83   |  8.62    |  94.83   |  0.00    |  0.00    |  0.00    |          1 |          0 |          5 |
+     1.1.1.3.1 |  96.55   |  1.72    |  96.55   |  0.00    |  0.00    |  0.00    |          1 |          0 |          6 |
+     1.1.1.3.2 |  100.00   |  3.45    |  100.00   |  0.00    |  0.00    |  0.00    |          2 |          0 |          8 |
+  [end TVE_050] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            5,670,688  bytes
+
+                      CPU Time =    0:00:00.01
+                  Elapsed Time =    0:00:00.26                    [end TDA_001]
+
+     Date Ended:  Thursday Nov 30 12:25:47 2017  EST
+
+INFO (TVE-002): STIL write vectors has completed.   [end TVE_002] 
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TVE-001): STIL write vectors started.    
+      1 INFO (TVE-002): STIL write vectors has completed.    
+      3 INFO (TVE-003): STIL write vectors output file will be: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/testresults/stil/cycleMap.FULLSCAN.comb_exp.    
+      1 INFO (TVE-004): Reading test section 1.1.  Test section type equals logic.    
+      1 INFO (TVE-005): Created 8 total cycles, of which 8 are test cycles, 0 are scan cycles, 0 are dynamic timed cycles and 0 are dynamic cycles that are not timed.    
+      1 INFO (TVE-050):         TEST SEQUENCE COVERAGE SUMMARY REPORT  
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************
