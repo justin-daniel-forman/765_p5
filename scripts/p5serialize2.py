@@ -440,7 +440,7 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
         idx = 0
         #filler vectors at end of cycle
         for _ in range(endvecsadd):
-            outf.write(str(count+2) + ':\t')
+            outf.write(str(count1+2) + ':\t')
             outf.write('P' * len(clocks) + '\t')
 
             for ctlsig in controls:
