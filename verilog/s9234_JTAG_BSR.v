@@ -64,7 +64,7 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   // input scan registers
   //External scan chain enabled when normal mode is off && instruction is 2'b00
   wire ext_hold;
-  assign ext_hold = ~TRST; //FIXME: Make 0 when inst not applied
+  assign ext_hold = (~(TMS & ~TRST) & (inst == 2'b00));
 
   SFF sff_g89(TDI,      ext_hold,g89,clockdr,updatedr,shiftdr,TMS,tdi_g94,cut_g89);
   SFF sff_g94(tdi_g94,  ext_hold,g94,clockdr,updatedr,shiftdr,TMS,tdi_g98,cut_g94);

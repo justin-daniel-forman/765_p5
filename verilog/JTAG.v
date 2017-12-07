@@ -13,21 +13,16 @@ module SFF(
 );
 
     wire sl_mux; //shift-load
-    wire tn_mux; //test-normal
     wire capture_out;
     wire update_out;
 
-    assign sl_mux = (shiftdr) ? TDI : din;
+    u_mux2 sl(sl_mux, din, TDI, shiftdr);
 
     udff capture_ff (capture_out, clockdr, sl_mux);
     assign TDO = capture_out;
 
     udff update_ff  (update_out, updatedr, capture_out);
-
-    //To get normal mode, TMS=global_TDI=1
-    //To hold values of scan, keep global TDI=0 while performing test
-    assign tn_mux  = (TMS & hold) ? din : update_out;
-    assign dout    = tn_mux;
+    u_mux2 tn_mux(dout, din, update_out, hold);
 
 endmodule //SFF
 
