@@ -46,13 +46,14 @@ module int_SFF(
     udff normal_ff(normal_out, ck, din);
 
     //FIXME: Do we even need to use update_out?
-    u_mux2(scan_in, din, tdi, shiftdr);
+    udff cap_ff  (cap_out, updatedr, din);
+    u_mux2 scan_sel(scan_in, cap_out, tdi, shiftdr);
     udff scan_ff  (scan_out, clockdr, scan_in);
 
     //Output is muxed btwn scanout and normal_out, but select line can
     //never be unknown else normal operation will be broken
     assign tdo = scan_out;
-    u_mux2(dout, normal_out, tdo, hold);
+    u_mux2 data_sel(dout, normal_out, tdo, hold);
 
 endmodule //int_SFF
 
