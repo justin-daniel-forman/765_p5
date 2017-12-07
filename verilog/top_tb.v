@@ -129,7 +129,7 @@ module TOP_TB();
 
         reset_fsm();
         shift_into_ir(2'b00);
-        shift_into_ext_dr(35'b0);
+        shift_into_ext_dr(36'hdead0beef);
 
         TDI  = 0; //use scanned values for test
         @(posedge CK);
@@ -171,7 +171,7 @@ module TOP_TB();
 
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the BSR
-    task shift_into_ext_dr(input [34:0] v);
+    task shift_into_ext_dr(input [35:0] v);
         integer ii;
         begin
             TDI = 0;
@@ -180,16 +180,15 @@ module TOP_TB();
 
             TMS = 0;
             @(posedge TCLK); //Advance to Capture DR
-            @(posedge TCLK); //Advance to Shift DR
 
             ii = 0;
-            while(ii < 35) begin
+            while(ii <= 35) begin
 
+                @(posedge TCLK); //Advance to Shift DR
                 TDI = v[ii];
-                @(posedge TCLK); //Shift in test vector bit
 
                 // Return back to the initial state if we aren't done
-                if(ii == 34) begin
+                if(ii == 35) begin
 
                     TMS = 1;
                     @(posedge TCLK); //Advance to Exit1 DR
