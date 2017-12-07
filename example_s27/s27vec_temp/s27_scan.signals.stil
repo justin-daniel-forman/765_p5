@@ -1,0 +1,47 @@
+STIL 1.0;
+
+// --- STIL SIGNAL FILE ---
+// s27_scan.signals.stil
+// Input file: ../s27_scan.etr
+// Converted from etr to STIL
+
+// 45 vectors in file
+// 1 clock signals present
+// 5 input signals present (not including clocks)
+// 2 output signals preset
+
+// CLOCKS: CK
+// INPUTS: scan_en, scan_in, G0, G1, G2, G3
+// OUTPUTS: scan_out, G17
+
+
+// --- DEFINE SIGNALS ---
+
+  Signals {
+    "CK" In;
+    "scan_en" In;
+    "scan_in" In;
+    "G0" In;
+    "G1" In;
+    "G2" In;
+    "G3" In;
+    "scan_out" Out;
+    "G17" Out;
+  }
+
+
+// --- DEFINE SIGNAL GROUPS ---
+
+  SignalGroups {
+    "ALLPIs" = '"CK"+"scan_en"+"scan_in"+"G0"+"G1"+"G2"+"G3"';
+    "ALLPOs" = '"scan_out"+"G17"';
+  }
+
+// --- DEFINE MACROS --- 
+
+  MacroDefs {
+    "TEST" { WaveformTable "test_cycle";
+      Vector {
+        "ALLPOs" = %;
+        "ALLPIs" = %; } }
+}

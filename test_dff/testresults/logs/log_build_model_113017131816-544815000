@@ -1,0 +1,94 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            build_model stepid=pd__build_model_113017131816-544815000 cell=s9234 workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff designsource=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/s9234.v  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Nov 30 13:18:16 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 1009.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff
+
+            cell=s9234
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/testresults/logs/log_build_model_113017131816-544815000
+            stepid=pd__build_model
+            DESIGNSOURCE=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/s9234.v
+[end TDA_009]
+INFO (TEI-195): Build Model - Controller starting: [end TEI_195] 
+
+
+Search Order  1:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff"
+Search Order  2:  "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/s9234.v"
+
+
+
+Reading Verilog file /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/s9234.v
+
+NC Verilog Parser complete - 1 modules, 5597 gates, 0 user defined primitives.
+
+
+Reading Verilog data from /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_dff/s9234.v
+
+NC Verilog Parser complete - 1 modules, 5597 gates, 0 user defined primitives.
+
+ERROR (TEI-002): The 'cell dff' was not found in the design source file(s) specified. Missing cell instance name: DFF_0, parent cell: s9234. Note that for Verilog, a change has been made to no longer automatically search the directories for explicitly specified files. Therefore it may now be necessary to add the directory of this missing cell to build the complete design.  [end TEI_002] 
+ERROR (TEI-400): Build Model FAILED:
+  Cell named 'dff' could not be resolved
+  Unexpected Model Build Failure
+  [end TEI_400] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =           38,982,032  bytes
+
+                      CPU Time =    0:00:00.49
+                  Elapsed Time =    0:00:01.42                    [end TDA_001]
+
+
+
+INFO (TEI-200): Build Model - Controller completed. [end TEI_200] 
+
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TEI-195): Build Model - Controller starting:  
+      1 INFO (TEI-200): Build Model - Controller completed.  
+
+  ERROR Messages...
+      1 ERROR (TEI-002): The 'cell dff' was not found in the design source file(s) specified. Missing cell instance name: DFF_0, parent cell: s9234. Note that for Verilog, a change has been made to no longer automatically search the directories for explicitly specified files. Therefore it may now be necessary to add the directory of this missing cell to build the complete design.   
+      1 ERROR (TEI-400): Build Model FAILED:
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************
