@@ -147,7 +147,7 @@ module TOP_TB();
         //Assign PIs and observe POs
         assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
         g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
-        g41,g22,g44,g23} = 0;
+        g41,g22,g44,g23} = 110110000011010111101000110100101010;
 
 
         //These values must be held for normal operation
@@ -183,7 +183,7 @@ module TOP_TB();
 
         TRST = 1;
         shift_into_ir(2'b11);
-        shift_into_int_dr(211'hdeadbeef);
+        shift_into_int_dr(211'b1110000111100001101111011000111111010101001001101011101011111011001101010100110111110010101100101011101111001111000010110010100111100010110111100001010000111100101000111011101011011101011111110100110010100100010);
 
         //Apply one cycle to the circuit
         TRST = 0;

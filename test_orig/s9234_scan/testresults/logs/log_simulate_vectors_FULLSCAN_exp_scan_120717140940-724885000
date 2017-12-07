@@ -1,0 +1,116 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            simulate_vectors stepid=pd__simulate_vectors_120717140940-724885000 experiment=exp_scan testmode=FULLSCAN workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan faulttype=static importfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Dec 07 14:09:40 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 29760.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan
+            TESTMODE=FULLSCAN
+            EXPERIMENT=exp_scan
+
+            faulttype=static
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/testresults/logs/log_simulate_vectors_FULLSCAN_exp_scan_120717140940-724885000
+            stepid=pd__simulate_vectors
+            importfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil
+[end TDA_009]
+INFO (TIS-804): TISwriteTBD started.  [end TIS_804] 
+INFO (TIS-807): Including file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil.  [end TIS_807] 
+INFO (TIS-807): Including file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.signals.stil.  [end TIS_807] 
+INFO (TIS-806): Returning from included file to file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil line: 18.  [end TIS_806] 
+INFO (TIS-805): STIL parsing ended with a return code of 0.  [end TIS_805] 
+INFO (TIS-801): Primary STIL (1450.0) Version: 1.0.  [end TIS_801] 
+INFO (TIS-808): Processing Pattern Exec block: MAIN_EXEC using timing domain #global#.  [end TIS_808] 
+WARNING (TIS-442): Experiment exp_scan_read already exists, and will be replaced  [end TIS_442] 
+INFO (TIS-820): Experiment exp_scan_read has been created for import of STIL vectors. [end TIS_820] 
+INFO (TIS-802): TISwriteTBD has completed.  [end TIS_802] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =          225,048,176  bytes
+
+                      CPU Time =    0:00:40.73
+                  Elapsed Time =    0:00:46.14                    [end TDA_001]
+
+     Date Ended:  Thursday Dec 07 14:10:27 2017  EST
+
+INFO (TWC-015): STIL has been saved in tbdata as experiment exp_scan_read.  To resimulate the 
+  same source, specify INEXPERIMENT=exp_scan_read, rather than language=STIL and importfile, 
+  on subsequent simulate_vectors commands. [end TWC_015] 
+
+INFO (TGR-001): Start of TGResim for Encounter Test.   [end TGR_001] 
+
+**************************************************************************************
+                           Testmode Statistics: FULLSCAN
+
+                         #Faults   #Tested #Possibly   #Redund #Untested  %TCov %ATCov
+Total Static               31065         0         0         0     31065   0.00   0.00
+
+                            Global Statistics
+
+                         #Faults   #Tested #Possibly   #Redund #Untested  %TCov %ATCov
+Total Static               31065         0         0         0     31065   0.00   0.00
+**************************************************************************************
+INFO (TGR-100): Processing logic test section with static test type begins.  [end TGR_100] 
+ERROR (TCL-173): A pulse clock event specified PI 'TCLK'
+           (index=1) but test function pin flags indicate this PI
+           is not a clock. Processing terminates.  [end TCL_173] 
+ERROR (TCL-039): Run stopped. Check for additional messages and Contact Customer Support. [end TCL_039] 
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TGR-001): Start of TGResim for Encounter Test.    
+      1 INFO (TGR-100): Processing logic test section with static test type begins.   
+      1 INFO (TIS-801): Primary STIL (1450.0) Version: 1.0.   
+      1 INFO (TIS-802): TISwriteTBD has completed.   
+      1 INFO (TIS-804): TISwriteTBD started.   
+      1 INFO (TIS-805): STIL parsing ended with a return code of 0.   
+      1 INFO (TIS-806): Returning from included file to file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil line: 18.   
+      2 INFO (TIS-807): Including file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil.   
+      1 INFO (TIS-808): Processing Pattern Exec block: MAIN_EXEC using timing domain #global#.   
+      1 INFO (TIS-820): Experiment exp_scan_read has been created for import of STIL vectors.  
+      1 INFO (TWC-015): STIL has been saved in tbdata as experiment exp_scan_read.  To resimulate the 
+
+  WARNING Messages...
+      1 WARNING (TIS-442): Experiment exp_scan_read already exists, and will be replaced   
+
+  ERROR Messages...
+      1 ERROR (TCL-039): Run stopped. Check for additional messages and Contact Customer Support.  
+      1 ERROR (TCL-173): A pulse clock event specified PI 'TCLK'
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************
