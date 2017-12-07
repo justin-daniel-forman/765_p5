@@ -35,7 +35,7 @@ module TOP_TB();
     reg [210:0] r_int;
     initial begin
 
-        $monitor($stime,, "\tCUT input:  %b\n\t\tCUT output: %b",
+        $monitor($stime,, "\tCUT input:  %b\n\t\tCUT output: %b\n\t\tCUT flops: %b",
             {DUT.BSR.cut_g89,
              DUT.BSR.cut_g94,
              DUT.BSR.cut_g98,
@@ -110,7 +110,39 @@ module TOP_TB();
              DUT.BSR.cut_g4110,
              DUT.BSR.cut_g4104,
              DUT.BSR.cut_g4107,
-             DUT.BSR.cut_g4098});
+             DUT.BSR.cut_g4098},
+             {DUT.BSR.s9234_IS.SFF_0.dout,
+             DUT.BSR.s9234_IS.SFF_1.dout,
+             DUT.BSR.s9234_IS.SFF_2.dout,
+             DUT.BSR.s9234_IS.SFF_3.dout,
+             DUT.BSR.s9234_IS.SFF_4.dout,
+             DUT.BSR.s9234_IS.SFF_5.dout,
+             DUT.BSR.s9234_IS.SFF_6.dout,
+             DUT.BSR.s9234_IS.SFF_7.dout,
+             DUT.BSR.s9234_IS.SFF_8.dout,
+             DUT.BSR.s9234_IS.SFF_9.dout,
+             DUT.BSR.s9234_IS.SFF_10.dout,
+             DUT.BSR.s9234_IS.SFF_11.dout,
+             DUT.BSR.s9234_IS.SFF_12.dout,
+             DUT.BSR.s9234_IS.SFF_13.dout,
+             DUT.BSR.s9234_IS.SFF_14.dout,
+             DUT.BSR.s9234_IS.SFF_15.dout,
+             DUT.BSR.s9234_IS.SFF_16.dout,
+             DUT.BSR.s9234_IS.SFF_17.dout,
+             DUT.BSR.s9234_IS.SFF_18.dout,
+             DUT.BSR.s9234_IS.SFF_19.dout,
+             DUT.BSR.s9234_IS.SFF_20.dout,
+             DUT.BSR.s9234_IS.SFF_21.dout,
+             DUT.BSR.s9234_IS.SFF_22.dout,
+             DUT.BSR.s9234_IS.SFF_23.dout,
+             DUT.BSR.s9234_IS.SFF_24.dout,
+             DUT.BSR.s9234_IS.SFF_25.dout,
+             DUT.BSR.s9234_IS.SFF_26.dout,
+             DUT.BSR.s9234_IS.SFF_100.dout,
+             DUT.BSR.s9234_IS.SFF_200.dout
+
+             }
+        );
 
         //Assign PIs and observe POs
         assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
@@ -128,26 +160,34 @@ module TOP_TB();
         @(posedge CK);
         @(posedge CK);
 
-        TRST = 1;
-        shift_into_ir(2'b00);
-        shift_into_ext_dr(36'b0);
+//        TRST = 1;
+//        shift_into_ir(2'b00);
+//        shift_into_ext_dr(36'b0);
+//
+//        //These values must be set for normal operation
+//        TMS  = 1;
+//        TRST = 0;
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//        @(posedge CK);
+//
+//        TRST = 1;
+//        shift_out_ext_data(r_ext);
 
-        //These values must be set for normal operation
-        TMS  = 1;
+        TRST = 1;
+        shift_into_ir(2'b11);
+        shift_into_int_dr(211'hdeadbeef);
+
+        //Apply one cycle to the circuit
         TRST = 0;
         @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-        @(posedge CK);
-
-        TRST = 1;
-        shift_out_ext_data(r_ext);
         $finish;
     end
 
@@ -228,6 +268,7 @@ module TOP_TB();
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the Internal Scan Register
     task shift_into_int_dr(input [210:0] v);
+
         integer ii;
         begin
             TDI = 0;
@@ -236,13 +277,12 @@ module TOP_TB();
 
             TMS = 0;
             @(posedge TCLK); //Advance to Capture DR
-            @(posedge TCLK); //Advance to Shift DR
 
             ii = 0;
-            while(ii < 211) begin
+            while(ii <= 210) begin
 
+                @(posedge TCLK); //Advance to Shift DR
                 TDI = v[ii];
-                @(posedge TCLK); //Shift in test vector bit
 
                 // Return back to the initial state if we aren't done
                 if(ii == 210) begin
@@ -258,8 +298,27 @@ module TOP_TB();
                 end
                 ii = ii + 1;
             end
-        end
 
+            $display("Internal DR contains: %h",
+             {DUT.BSR.s9234_IS.SFF_0.tdo,
+             DUT.BSR.s9234_IS.SFF_1.tdo,
+             DUT.BSR.s9234_IS.SFF_2.tdo,
+             DUT.BSR.s9234_IS.SFF_3.tdo,
+             DUT.BSR.s9234_IS.SFF_4.tdo,
+             DUT.BSR.s9234_IS.SFF_5.tdo,
+             DUT.BSR.s9234_IS.SFF_6.tdo,
+             DUT.BSR.s9234_IS.SFF_7.tdo,
+             DUT.BSR.s9234_IS.SFF_8.tdo,
+             DUT.BSR.s9234_IS.SFF_9.tdo,
+             DUT.BSR.s9234_IS.SFF_100.tdo,
+             DUT.BSR.s9234_IS.SFF_150.tdo,
+             DUT.BSR.s9234_IS.SFF_200.tdo,
+             DUT.BSR.s9234_IS.SFF_207.tdo,
+             DUT.BSR.s9234_IS.SFF_208.tdo,
+             DUT.BSR.s9234_IS.SFF_209.tdo,
+             DUT.BSR.s9234_IS.SFF_210.tdo});
+
+        end
     endtask
 
     //Outputs the vector that is obtained from running the test
