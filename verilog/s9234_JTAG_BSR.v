@@ -144,4 +144,4 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   SFF sff_g4107(tdi_g4107,ext_hold,cut_g4107,clockdr_bs,updatedr_bs,shiftdr_bs,TMS,tdi_g4098,g4107);
   SFF sff_g4098(tdi_g4098,ext_hold,cut_g4098,clockdr_bs,updatedr_bs,shiftdr_bs,TMS,TDO_BSR,g4098);
 
-endmodule;
+endmodule

@@ -63,4 +63,4 @@ module s9234_JTAG_TOP(TMS,CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,
 
   and and0(TDO, TDO_buff, bs_en);
 
-endmodule;
+endmodule
