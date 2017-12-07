@@ -1,0 +1,100 @@
+0 
+35
++cli+4
++itf+/usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/vcsd.tab
++memcbk
++vcsd
++vpi
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/usr/local/synopsys/vcs-mx_vJ-2014.12/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags=
+-Mobjects= /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/libvirsim.so /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/liberrorinf.so /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl -lm
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/usr/local/synopsys/vcs-mx_vJ-2014.12/include
+-Xcbug=0x1
+-debug=3
+-gen_obj
+-picarchive
+/usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/bin/vcs1
+JTAG.v
+TAP.v
+primitives.v
+s9234.v
+s9234_JTAG_BSR.v
+s9234_JTAG_TOP.v
+s9234_inscan.v
+top_tb.v
+45
+sysc_uni_pwd=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog
+VMR_MODE_FLAG=32
+VCS_TARGET_ARCH=amd64
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LIC_EXPIRE_WARNING=0
+VCS_HOME=/usr/local/synopsys/vcs-mx_vJ-2014.12
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH_OVERRIDE=linux
+VCS_ARCH=amd64
+UNAME=/bin/uname
+TOOL_HOME=/usr/local/synopsys/vcs-mx_vJ-2014.12/amd64
+SYN_DIR=/usr/local/synopsys/synopsys-2007.03-SP5
+SYNOPSYS=/usr/local/synopsys
+SSH_TTY=/dev/pts/10
+SSH_CONNECTION=128.237.217.177 50700 128.2.131.51 22
+SSH_CLIENT=128.237.217.177 50700 22
+SSH_AUTH_SOCK=/tmp/ssh-uzcla14270/agent.14270
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SELINUX_USE_CURRENT_RANGE=
+SELINUX_ROLE_REQUESTED=
+SELINUX_LEVEL_REQUESTED=
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+OVA_UUM=0
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+MFLAGS=
+MAKELEVEL=1
+MAKEFLAGS=
+LOADEDMODULES=
+LESSOPEN=|/usr/bin/lesspipe.sh %s
+LC_ALL=C
+KRB5CCNAME=FILE:/var/tmp/krb5cc_dsoung_3pXjZl
+KDEDIRS=/usr
+HISTCONTROL=ignoredups
+G_BROKEN_FILENAMES=1
+DC_HOME=/usr/local/synopsys/synopsys-2007.03-SP5/linux/syn
+CVS_RSH=ssh
+BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`_}
+AKLOG=/usr/bin/aklog
+0
+9
+1512414961 s9234_inscan.v
+1512414961 top_tb.v
+1511977367 s9234.v
+1512414961 s9234_JTAG_BSR.v
+1512414961 s9234_JTAG_TOP.v
+1512414960 JTAG.v
+1511979150 TAP.v
+1511981987 primitives.v
+1440743823 /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/vcsd.tab
+4
+0 
+1440744113 /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/libvirsim.so
+1440743874 /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/liberrorinf.so
+1440743866 /usr/local/synopsys/vcs-mx_vJ-2014.12/amd64/lib/libsnpsmalloc.so
+1512415051 simv.daidir

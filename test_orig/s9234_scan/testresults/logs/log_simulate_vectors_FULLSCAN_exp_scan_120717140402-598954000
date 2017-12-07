@@ -1,0 +1,84 @@
+
+INFO (TDA-005): Command Line Invocation: 
+            simulate_vectors stepid=pd__simulate_vectors_120717140402-598954000 experiment=exp_scan testmode=FULLSCAN workdir=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan faulttype=static importfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil  [end TDA_005]
+
+***********************************************************************
+Encounter(R) Test and Diagnostics 15.11 Jun 25, 2015 (linux26_64 ET151)
+ 
+Licensed Materials - Property of Cadence Design Systems, Inc. 
+ 
+Copyright (C) 2002-2015 Cadence Design Systems Inc. All Rights Reserved. 
+Cadence and the Cadence logo are registered trademarks. All others are 
+properties of their respective holders. 
+ 
+Copyright (C) 1994-2002 IBM Corporation. All rights reserved. 
+  IBM is a Trademark of International Business Machines Corporation. 
+Copyright (C) 2001-2003 The Trustees of Indiana University. All rights reserved. 
+Copyright (C) 1998-2001 University of Notre Dame. All rights reserved. 
+Copyright (C) 1994-1998 The Ohio State University. All rights reserved. 
+Perl Copyright 1987-2002, Larry Wall 
+
+
+***********************************************************************
+
+INFO (TDA-007): Job Information:
+            Date Started: Thursday Dec 07 14:04:02 2017  EST
+            Host machine is ece-gui-001.ece.cmu.edu, x86_64 running Linux 2.6.32-431.29.2.el6.x86_64.
+            This job is process number 29587.
+[end TDA_007]
+
+INFO (TDA-009): Keywords/Values information.
+            (keywords marked with '*' have program generated values,
+             keywords marked with '+' were specified to default.)
+
+            WORKDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan
+            TESTMODE=FULLSCAN
+            EXPERIMENT=exp_scan
+
+            faulttype=static
+            logfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/testresults/logs/log_simulate_vectors_FULLSCAN_exp_scan_120717140402-598954000
+            stepid=pd__simulate_vectors
+            importfile=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil
+[end TDA_009]
+INFO (TIS-804): TISwriteTBD started.  [end TIS_804] 
+INFO (TIS-807): Including file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil.  [end TIS_807] 
+WARNING (TIS-424): [Severe] Unable to open file s27_scan.signals.stil.  [end TIS_424] 
+ERROR (TIS-001): The STIL parser discovered a file include error processing token ; on line 18 of file /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil. Processing ends.  [end TIS_001] 
+
+INFO (TDA-001): Maximum Memory used during the run and Cumulative Time in hours:minutes:seconds:
+
+                  Total Memory =            7,545,824  bytes
+
+                      CPU Time =    0:00:00.01
+                  Elapsed Time =    0:00:00.02                    [end TDA_001]
+
+     Date Ended:  Thursday Dec 07 14:04:03 2017  EST
+
+INFO (TWC-015): STIL has been saved in tbdata as experiment exp_scan_read.  To resimulate the 
+  same source, specify INEXPERIMENT=exp_scan_read, rather than language=STIL and importfile, 
+  on subsequent simulate_vectors commands. [end TWC_015] 
+ERROR (TWC-019): Import file did not process properly.  Simulation will not be performed. [end TWC_019] 
+
+
+
+*******************************************************************************
+*                      Message Summary                                        *
+*******************************************************************************
+ Count  Number             First Instance of Message Text
+------- ------             ------------------------------
+
+  INFO Messages...
+      1 INFO (TIS-804): TISwriteTBD started.   
+      1 INFO (TIS-807): Including file: /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil.   
+      1 INFO (TWC-015): STIL has been saved in tbdata as experiment exp_scan_read.  To resimulate the 
+
+  WARNING [Severe] Messages...
+      1 WARNING (TIS-424): [Severe] Unable to open file s27_scan.signals.stil.   
+
+  ERROR Messages...
+      1 ERROR (TIS-001): The STIL parser discovered a file include error processing token ; on line 18 of file /afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan.vectors.stil. Processing ends.   
+      1 ERROR (TWC-019): Import file did not process properly.  Simulation will not be performed.  
+
+ For a detailed explanation of a message and a suggested user response execute 'msgHelp <message id>'.  For example: msgHelp TDA-009
+
+*******************************************************************************

@@ -1,0 +1,13 @@
+
+ MSGID = CSV118 :
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLK ;
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLKbar ;
+
+ MSGID = CSV018 :
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLK ;
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLKbar ;
+
+ MSGID = CSV019 :
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLK ;
+   SUPPRESS_MSG USAGE = __rDFF_c.dominatedCLKbar ;
+

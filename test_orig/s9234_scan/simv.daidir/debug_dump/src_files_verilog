@@ -1,0 +1,8 @@
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/JTAG.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/TAP.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/primitives.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/s9234.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/s9234_JTAG_BSR.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/s9234_JTAG_TOP.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/s9234_inscan.v
+/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/top_tb.v

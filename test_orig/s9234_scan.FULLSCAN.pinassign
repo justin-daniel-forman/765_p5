@@ -1,0 +1,2 @@
+assign pin=CK	test_function=-SC;
+assign pin=TCLK	test_function=-SC;
