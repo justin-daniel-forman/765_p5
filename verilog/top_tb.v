@@ -162,7 +162,7 @@ module TOP_TB();
 
 //        TRST = 1;
 //        shift_into_ir(2'b00);
-//        shift_into_ext_dr(36'b0);
+//        shift_into_ext_dr(36'b110110000011010111101000110100101010);
 //
 //        //These values must be set for normal operation
 //        TMS  = 1;
@@ -183,7 +183,7 @@ module TOP_TB();
 
         TRST = 1;
         shift_into_ir(2'b11);
-        shift_into_int_dr(211'hdeadbeef);
+        shift_into_int_dr(211'b1110000111100001101111011000111111010101001001101011101011111011001101010100110111110010101100101011101111001111000010110010100111100010110111100001010000111100101000111011101011011101011111110100110010100100010);
 
         //Apply one cycle to the circuit
         TRST = 0;
