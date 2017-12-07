@@ -338,6 +338,7 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
     schainbits = makechaindict(indict, outdict, scanchains, scanpairdict,
                                veclen, totalveclen)
     count = 0
+    count1 = 0
 
     #ctls = (TMS|TRST)
     tms_startup = "Z1100001100100"
@@ -353,7 +354,7 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
         #filler vectors
         count = veclen
         for _ in range(iovecsadd):
-            outf.write(str(count-veclen+2) + ':\t')
+            outf.write(str(count1) + ':\t')
             outf.write('P' * len(clocks) + '\t')
 
             #controls
@@ -374,11 +375,12 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
 
             outf.write('\t' + 'Z' * len(fins) + '\t' + 'X' * len(fouts) + '\n')
             count += 1
+            count1 += 1
 
         #scanchain vectors
         count = 0
         for _ in range(veclen):
-            outf.write(str(count+iovecsadd+2) + ':\t')
+            outf.write(str(count1) + ':\t')
             outf.write('P' * len(clocks) + '\t')
 
             #control signal bits
@@ -398,11 +400,12 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
 
             outf.write('\t' + 'Z' * len(fins) + '\t' + 'X' * len(fouts) + '\n')
             count += 1
+            count1 += 1
 
         count = veclen + iovecsadd
         #primary input stim and primary output measuring
         if pins or pouts:
-            outf.write(str(count+2) + ':\t')
+            outf.write(str(count1+2) + ':\t')
             outf.write('P' * len(clocks) + '\t')
 
             #controls
@@ -432,6 +435,7 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
 
             outf.write('\t' + 'Z' * len(fins) + '\t' + 'X' * len(fouts) + '\n')
             count += 1
+            count1 += 1
 
         idx = 0
         #filler vectors at end of cycle
