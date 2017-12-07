@@ -147,7 +147,7 @@ module TOP_TB();
         //Assign PIs and observe POs
         assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
         g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
-        g41,g22,g44,g23} = 0;
+        g41,g22,g44,g23} = 110110000011010111101000110100101010;
 
 
         //These values must be held for normal operation
@@ -162,7 +162,7 @@ module TOP_TB();
 
 //        TRST = 1;
 //        shift_into_ir(2'b00);
-//        shift_into_ext_dr(36'b110110000011010111101000110100101010);
+//        shift_into_ext_dr(36'b0);
 //
 //        //These values must be set for normal operation
 //        TMS  = 1;
