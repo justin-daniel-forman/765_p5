@@ -26,41 +26,6 @@ module SFF(
 
 endmodule //SFF
 
-
-module SFF_SIG(
-    input   wire TDI,       //Scan chain input
-    input   wire hold,      //Hold the dout=din when asserted
-    input   wire din,       //System data in
-    input   wire clockdr,   //Clock for capture ff
-    input   wire updatedr,  //Clock for update ff
-    input   wire shiftdr,   //Selects between system data and scan chain input
-    input   wire TMS,       //Selects between scanchain and test for output
-    input   wire sigsel,    //Selects between normal scan and sig generation
-    output  wire TDO,       //Scan chain output
-    output  wire dout       //System data out
-);
-
-    wire sl_mux; //shift-load
-    wire capture_out;
-    wire update_out;
-    wire sig;
-
-    u_mux2 sl(sl_mux, din, TDI, shiftdr);
-
-    udff capture_ff (capture_out, clockdr, sl_mux);
-
-    udff update_ff  (update_out, updatedr, capture_out);
-    u_mux2 tn_mux(dout, din, update_out, hold);
-
-
-    //Generate a signature for bist by XORing all bits of response
-    xor(sig, capture_out, TDI);
-    u_mux2 sig_mux(TDO, capture_out, sig, sigsel);
-
-
-endmodule //SFF
-
-
 module int_SFF(
     input   wire tdi,       //local shift input from prev scan stage
     input   wire hold,      //determines normal vs test operation output
@@ -91,6 +56,46 @@ module int_SFF(
     u_mux2 data_sel(dout, normal_out, tdo, hold);
 
 endmodule //int_SFF
+
+//module int_SFF(
+//    input   wire TDI,       //Scan chain input
+//    input   wire hold,      //Hold the dout=din when asserted
+//    input   wire din,       //System data in
+//    input   wire clockdr,   //Clock for capture ff
+//    input   wire updatedr,  //Clock for update ff
+//    input   wire shiftdr,   //Selects between system data and scan chain input
+//    input   wire TMS,       //Selects between scanchain and test for output
+//    input   wire TMS_delay, //Used to hold the output of the update reg
+//    output  wire TDO,       //Scan chain output
+//    output  wire dout       //System data out
+//);
+//
+//    wire sl_mux; //shift-load
+//    wire tn_mux; //test-normal
+//    wire capture_out;
+//    wire update_out;
+//
+//    //Hold can't even be reset because we can't set reset to 0 during shift
+//    //operation, otherwise the TAP controller would never advance. So reset
+//    //cannot be used to gate these transitions.
+//    assign sl_mux = (shiftdr & ~hold) ? TDI : din;
+//
+//    udff capture_ff (capture_out, clockdr, sl_mux);
+//    assign TDO = capture_out;
+//
+//    udff update_ff  (update_out, updatedr, capture_out);
+//
+//    //We need a way similar to the regular SFF to make sure that we can hold
+//    //the values of scan on the output when TMS is cycling. Normal operation
+//    //should be achieved when TMS=TDI=1. I don't see a reason why this can't
+//    //be the same as the previous step.
+//    assign tn_mux  = (TMS & TMS_delay) ? capture_out : update_out;
+//    assign dout    = tn_mux;
+//
+//endmodule //int_SFF
+
+//TODO: Create SFF LSFR module to double as LSFR
+//This will be used for BIST
 
 // Chain of ffs to store the JTAG instruction
 module IR (
@@ -129,3 +134,14 @@ module ID (
     assign sel = inst;
 
 endmodule //ID
+
+
+//FIXME: This should just be an addition to the SFF module w/ an xor gate
+//LSFR register implementation
+module LSFR(
+    input  wire         sin,
+    output wire [245:0] pout
+);
+
+
+endmodule //LSFR
