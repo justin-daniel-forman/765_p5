@@ -47,7 +47,9 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   // instantiating s9234 as CUT
   //Internal scan chain enabled when normal mode is off && instruction is 2'b11
   wire int_hold;
-  assign int_hold = (~(TMS & ~TRST) & (inst == 2'b10));
+  wire bistsel;
+  assign int_hold = (~(TMS & ~TRST) & (inst == 2'b10 || inst == 2'b11));
+  assign bistsel  = (~(TMS & ~TRST) & (inst == 2'b11));
 
   s9234_inscan s9234_IS(CK,cut_g102,cut_g107,cut_g1290,cut_g1293,cut_g22,cut_g23,
   cut_g2584,cut_g301,cut_g306,cut_g310,cut_g314,cut_g319,cut_g32,cut_g3222,
@@ -59,7 +61,7 @@ module s9234_JTAG_BSR(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314
   cut_g562,cut_g563,cut_g564,cut_g567,cut_g5692,cut_g6282,cut_g6284,cut_g6360,
   cut_g6362,cut_g6364,cut_g6366,cut_g6368,cut_g6370,cut_g6372,cut_g6374,
   cut_g639,cut_g6728,cut_g702,cut_g705,cut_g89,cut_g94,cut_g98,clockdr_is,updatedr_is,
-  shiftdr_is,TDI,TDO_ISR,int_hold);
+  shiftdr_is,TDI,TDO_ISR,int_hold,bistsel);
 
   // input scan registers
   //External scan chain enabled when normal mode is off && instruction is 2'b00

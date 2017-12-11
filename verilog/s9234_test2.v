@@ -1,20 +1,23 @@
-// s9234 with its DFFs replaced with scan flip flops
+//# 36 inputs
+//# 39 outputs
+//# 211 D-type flipflops
+//# 3570 inverters
+//# 2027 gates (955 ANDs + 528 NANDs + 431 ORs + 113 NORs)
 
-module s9234_inscan(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
+
+module s9234_test2(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,g32,
   g3222,g36,g3600,g37,g38,g39,g40,g4098,g4099,g41,g4100,g4101,g4102,g4103,
   g4104,g4105,g4106,g4107,g4108,g4109,g4110,g4112,g4121,g42,g4307,g4321,g44,
   g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
   g564,g567,g5692,g6282,g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,
-  g639,g6728,g702,g705,g89,g94,g98,clockdr,updatedr,shiftdr,TDI_ISR,TDO_ISR,int_hold,bistsel);
-
+  g639,g6728,g702,g705,g89,g94,g98);
 input CK,g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
   g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
-  g41,g22,g44,g23,clockdr,updatedr,shiftdr,TDI_ISR,int_hold,bistsel;
-
+  g41,g22,g44,g23;
 output g2584,g3222,g3600,g4307,g4321,g4422,g4809,g5137,g5468,g5469,g5692,g6282,
   g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,g6728,g1290,g4121,
   g4108,g4106,g4103,g1293,g4099,g4102,g4109,g4100,g4112,g4105,g4101,g4110,
-  g4104,g4107,g4098,TDO_ISR;
+  g4104,g4107,g4098;
 
   wire g678,g4130,g332,g6823,g123,g6940,g207,g6102,g695,g4147,g461,g4841,g18,
     g6725,g292,g3232,g331,g4119,g689,g4141,g24,g6726,g465,g6507,g84,g6590,g291,
@@ -495,246 +498,218 @@ output g2584,g3222,g3600,g4307,g4321,g4422,g4809,g5137,g5468,g5469,g5692,g6282,
     I5258,I7564,I5648,I5649,I5243,I2683,I7578,I5659,I4184,g3528,g3664,g3656,
     g3647,g1449,g1418,g1879;
 
-    // scan intermediate wires
-    wire tdi_g6823,tdi_g6940,tdi_g6102,tdi_g4147,tdi_g4841,tdi_g6725,tdi_g3232,
-    tdi_g4119,tdi_g4141,tdi_g6726,tdi_g6507,tdi_g6590,tdi_g3231,tdi_g5330,tdi_g5147,
-    tdi_g4839,tdi_g6105,tdi_g5138,tdi_g4122,tdi_g6827,tdi_g6745,tdi_g6405,tdi_g6729,
-    tdi_g6595,tdi_g6826,tdi_g4134,tdi_g6599,tdi_g4857,tdi_g6406,tdi_g5148,tdi_g4117,
-    tdi_g6582,tdi_g3229,tdi_g5700,tdi_g4136,tdi_g4858,tdi_g5876,tdi_g3239,tdi_g5698,
-    tdi_g5328,tdi_g4133,tdi_g4847,tdi_g5877,tdi_g6597,tdi_g4120,tdi_g3235,tdi_g4137,
-    tdi_g6407,tdi_g5470,tdi_g6841,tdi_g4149,tdi_g6101,tdi_g4844,tdi_g4113,tdi_g6504,
-    tdi_g3224,tdi_g4855,tdi_g4424,tdi_g5582,tdi_g6502,tdi_g6107,tdi_g5472,tdi_g6602,
-    tdi_g5581,tdi_g6587,tdi_g4145,tdi_g2585,tdi_g4842,tdi_g2586,tdi_g1291,tdi_g4118,
-    tdi_g3225,tdi_g4853,tdi_g4849,tdi_g6512,tdi_g3233,tdi_g4851,tdi_g4856,tdi_g6854,
-    tdi_g1831,tdi_g4843,tdi_g6510,tdi_g6591,tdi_g4846,tdi_g1288,tdi_g5478,tdi_g6840,
-    tdi_g6594,tdi_g5580,tdi_g6853,tdi_g4840,tdi_g4150,tdi_g5490,tdi_g6511,tdi_g4142,
-    tdi_g4845,tdi_g5694,tdi_g6722,tdi_g4139,tdi_g5480,tdi_g5697,tdi_g6498,tdi_g4126,
-    tdi_g5471,tdi_g6505,tdi_g6588,tdi_g5475,tdi_g4148,tdi_g6501,tdi_g6506,tdi_g4135,
-    tdi_g5479,tdi_g6824,tdi_g3240,tdi_g5476,tdi_g3230,tdi_g6721,tdi_g3227,tdi_g6925,
-    tdi_g5477,tdi_g5489,tdi_g4131,tdi_g6727,tdi_g4140,tdi_g6842,tdi_g4423,tdi_g6723,
-    tdi_g6724,tdi_g4132,tdi_g6401,tdi_g5491,tdi_g4127,tdi_g6278,tdi_g6106,tdi_g6744,
-    tdi_g6404,tdi_g4138,tdi_g3228,tdi_g1289,tdi_g4123,tdi_g4658,tdi_g5878,tdi_g4125,
-    tdi_g4124,tdi_g5874,tdi_g6103,tdi_g1294,tdi_g1292,tdi_g4115,tdi_g6584,tdi_g6596,
-    tdi_g3226,tdi_g2587,tdi_g4657,tdi_g6589,tdi_g3234,tdi_g3238,tdi_g6592,tdi_g5473,
-    tdi_g4114,tdi_g6800,tdi_g5141,tdi_g4854,tdi_g6839,tdi_g5699,tdi_g3236,tdi_g6601,
-    tdi_g5875,tdi_g4425,tdi_g5329,tdi_g5695,tdi_g6499,tdi_g6825,tdi_g5693,tdi_g4850,
-    tdi_g3237,tdi_g6497,tdi_g6100,tdi_g6509,tdi_g4128,tdi_g4116,tdi_g6503,tdi_g3241,
-    tdi_g6277,tdi_g5139,tdi_g6598,tdi_g6600,tdi_g4129,tdi_g6593,tdi_g6801,tdi_g4426,
-    tdi_g5474,tdi_g5140,tdi_g5696,tdi_g4852,tdi_g4848,tdi_g4659,tdi_g6583,tdi_g6402,
-    tdi_g4144,tdi_g6104,tdi_g6941,tdi_g6403,tdi_g6500,tdi_g6508,tdi_g6586,tdi_g4146,
-    tdi_g4143,tdi_g6720,tdi_g6585;
 
-    int_SFF_LSFR SFF_0   (bistsel,TDO_ISR,TDI_ISR,int_hold,g4130,CK,clockdr,updatedr,shiftdr,tdi_g6823,g678);
-    int_SFF_LSFR SFF_1   (bistsel,TDO_ISR,tdi_g6823,int_hold,g6823,CK,clockdr,updatedr,shiftdr,tdi_g6940,g332);
-    int_SFF_LSFR SFF_2   (bistsel,TDO_ISR,tdi_g6940,int_hold,g6940,CK,clockdr,updatedr,shiftdr,tdi_g6102,g123);
-    int_SFF_LSFR SFF_3   (bistsel,TDO_ISR,tdi_g6102,int_hold,g6102,CK,clockdr,updatedr,shiftdr,tdi_g4147,g207);
-    int_SFF_LSFR SFF_4   (bistsel,TDO_ISR,tdi_g4147,int_hold,g4147,CK,clockdr,updatedr,shiftdr,tdi_g4841,g695);
-    int_SFF_LSFR SFF_5   (bistsel,TDO_ISR,tdi_g4841,int_hold,g4841,CK,clockdr,updatedr,shiftdr,tdi_g6725,g461);
-    int_SFF_LSFR SFF_6   (bistsel,TDO_ISR,tdi_g6725,int_hold,g6725,CK,clockdr,updatedr,shiftdr,tdi_g3232,g18);
-    int_SFF_LSFR SFF_7   (bistsel,TDO_ISR,tdi_g3232,int_hold,g3232,CK,clockdr,updatedr,shiftdr,tdi_g4119,g292);
-    int_SFF_LSFR SFF_8   (bistsel,TDO_ISR,tdi_g4119,int_hold,g4119,CK,clockdr,updatedr,shiftdr,tdi_g4141,g331);
-    int_SFF_LSFR SFF_9   (bistsel,TDO_ISR,tdi_g4141,int_hold,g4141,CK,clockdr,updatedr,shiftdr,tdi_g6726,g689);
-    int_SFF_LSFR SFF_10  (bistsel,TDO_ISR,tdi_g6726,int_hold,g6726,CK,clockdr,updatedr,shiftdr,tdi_g6507,g24);
-    int_SFF_LSFR SFF_11  (bistsel,TDO_ISR,tdi_g6507,int_hold,g6507,CK,clockdr,updatedr,shiftdr,tdi_g6590,g465);
-    int_SFF_LSFR SFF_12  (bistsel,TDO_ISR,tdi_g6590,int_hold,g6590,CK,clockdr,updatedr,shiftdr,tdi_g3231,g84);
-    int_SFF_LSFR SFF_13  (bistsel,TDO_ISR,tdi_g3231,int_hold,g3231,CK,clockdr,updatedr,shiftdr,tdi_g5330,g291);
-    int_SFF_LSFR SFF_14  (bistsel,TDO_ISR,tdi_g5330,int_hold,g5330,CK,clockdr,updatedr,shiftdr,tdi_g5147,g676);
-    int_SFF_LSFR SFF_15  (bistsel,TDO_ISR,tdi_g5147,int_hold,g5147,CK,clockdr,updatedr,shiftdr,tdi_g4839,g622);
-    int_SFF_LSFR SFF_16  (bistsel,TDO_ISR,tdi_g4839,int_hold,g4839,CK,clockdr,updatedr,shiftdr,tdi_g6105,g117);
-    int_SFF_LSFR SFF_17  (bistsel,TDO_ISR,tdi_g6105,int_hold,g6105,CK,clockdr,updatedr,shiftdr,tdi_g5138,g278);
-    int_SFF_LSFR SFF_18  (bistsel,TDO_ISR,tdi_g5138,int_hold,g5138,CK,clockdr,updatedr,shiftdr,tdi_g4122,g128);
-    int_SFF_LSFR SFF_19  (bistsel,TDO_ISR,tdi_g4122,int_hold,g4122,CK,clockdr,updatedr,shiftdr,tdi_g6827,g598);
-    int_SFF_LSFR SFF_20  (bistsel,TDO_ISR,tdi_g6827,int_hold,g6827,CK,clockdr,updatedr,shiftdr,tdi_g6745,g554);
-    int_SFF_LSFR SFF_21  (bistsel,TDO_ISR,tdi_g6745,int_hold,g6745,CK,clockdr,updatedr,shiftdr,tdi_g6405,g496);
-    int_SFF_LSFR SFF_22  (bistsel,TDO_ISR,tdi_g6405,int_hold,g6405,CK,clockdr,updatedr,shiftdr,tdi_g6729,g179);
-    int_SFF_LSFR SFF_23  (bistsel,TDO_ISR,tdi_g6729,int_hold,g6729,CK,clockdr,updatedr,shiftdr,tdi_g6595,g48);
-    int_SFF_LSFR SFF_24  (bistsel,TDO_ISR,tdi_g6595,int_hold,g6595,CK,clockdr,updatedr,shiftdr,tdi_g6826,g590);
-    int_SFF_LSFR SFF_25  (bistsel,TDO_ISR,tdi_g6826,int_hold,g6826,CK,clockdr,updatedr,shiftdr,tdi_g4134,g551);
-    int_SFF_LSFR SFF_26  (bistsel,TDO_ISR,tdi_g4134,int_hold,g4134,CK,clockdr,updatedr,shiftdr,tdi_g6599,g682);
-    int_SFF_LSFR SFF_27  (bistsel,TDO_ISR,tdi_g6599,int_hold,g6599,CK,clockdr,updatedr,shiftdr,tdi_g4857,g11);
-    int_SFF_LSFR SFF_28  (bistsel,TDO_ISR,tdi_g4857,int_hold,g4857,CK,clockdr,updatedr,shiftdr,tdi_g6406,g606);
-    int_SFF_LSFR SFF_29  (bistsel,TDO_ISR,tdi_g6406,int_hold,g6406,CK,clockdr,updatedr,shiftdr,tdi_g5148,g188);
-    int_SFF_LSFR SFF_30  (bistsel,TDO_ISR,tdi_g5148,int_hold,g5148,CK,clockdr,updatedr,shiftdr,tdi_g4117,g646);
-    int_SFF_LSFR SFF_31  (bistsel,TDO_ISR,tdi_g4117,int_hold,g4117,CK,clockdr,updatedr,shiftdr,tdi_g6582,g327);
-    int_SFF_LSFR SFF_32  (bistsel,TDO_ISR,tdi_g6582,int_hold,g6582,CK,clockdr,updatedr,shiftdr,tdi_g3229,g361);
-    int_SFF_LSFR SFF_33  (bistsel,TDO_ISR,tdi_g3229,int_hold,g3229,CK,clockdr,updatedr,shiftdr,tdi_g5700,g289);
-    int_SFF_LSFR SFF_34  (bistsel,TDO_ISR,tdi_g5700,int_hold,g5700,CK,clockdr,updatedr,shiftdr,tdi_g4136,g398);
-    int_SFF_LSFR SFF_35  (bistsel,TDO_ISR,tdi_g4136,int_hold,g4136,CK,clockdr,updatedr,shiftdr,tdi_g4858,g684);
-    int_SFF_LSFR SFF_36  (bistsel,TDO_ISR,tdi_g4858,int_hold,g4858,CK,clockdr,updatedr,shiftdr,tdi_g5876,g619);
-    int_SFF_LSFR SFF_37  (bistsel,TDO_ISR,tdi_g5876,int_hold,g5876,CK,clockdr,updatedr,shiftdr,tdi_g3239,g208);
-    int_SFF_LSFR SFF_38  (bistsel,TDO_ISR,tdi_g3239,int_hold,g3239,CK,clockdr,updatedr,shiftdr,tdi_g5698,g248);
-    int_SFF_LSFR SFF_39  (bistsel,TDO_ISR,tdi_g5698,int_hold,g5698,CK,clockdr,updatedr,shiftdr,tdi_g5328,g390);
-    int_SFF_LSFR SFF_40  (bistsel,TDO_ISR,tdi_g5328,int_hold,g5328,CK,clockdr,updatedr,shiftdr,tdi_g4133,g625);
-    int_SFF_LSFR SFF_41  (bistsel,TDO_ISR,tdi_g4133,int_hold,g4133,CK,clockdr,updatedr,shiftdr,tdi_g4847,g681);
-    int_SFF_LSFR SFF_42  (bistsel,TDO_ISR,tdi_g4847,int_hold,g4847,CK,clockdr,updatedr,shiftdr,tdi_g5877,g437);
-    int_SFF_LSFR SFF_43  (bistsel,TDO_ISR,tdi_g5877,int_hold,g5877,CK,clockdr,updatedr,shiftdr,tdi_g6597,g276);
-    int_SFF_LSFR SFF_44  (bistsel,TDO_ISR,tdi_g6597,int_hold,g6597,CK,clockdr,updatedr,shiftdr,tdi_g4120,g3);
-    int_SFF_LSFR SFF_45  (bistsel,TDO_ISR,tdi_g4120,int_hold,g4120,CK,clockdr,updatedr,shiftdr,tdi_g3235,g323);
-    int_SFF_LSFR SFF_46  (bistsel,TDO_ISR,tdi_g3235,int_hold,g3235,CK,clockdr,updatedr,shiftdr,tdi_g4137,g224);
-    int_SFF_LSFR SFF_47  (bistsel,TDO_ISR,tdi_g4137,int_hold,g4137,CK,clockdr,updatedr,shiftdr,tdi_g6407,g685);
-    int_SFF_LSFR SFF_48  (bistsel,TDO_ISR,tdi_g6407,int_hold,g6407,CK,clockdr,updatedr,shiftdr,tdi_g5470,g43);
-    int_SFF_LSFR SFF_49  (bistsel,TDO_ISR,tdi_g5470,int_hold,g5470,CK,clockdr,updatedr,shiftdr,tdi_g6841,g157);
-    int_SFF_LSFR SFF_50  (bistsel,TDO_ISR,tdi_g6841,int_hold,g6841,CK,clockdr,updatedr,shiftdr,tdi_g4149,g282);
-    int_SFF_LSFR SFF_51  (bistsel,TDO_ISR,tdi_g4149,int_hold,g4149,CK,clockdr,updatedr,shiftdr,tdi_g6101,g697);
-    int_SFF_LSFR SFF_52  (bistsel,TDO_ISR,tdi_g6101,int_hold,g6101,CK,clockdr,updatedr,shiftdr,tdi_g4844,g206);
-    int_SFF_LSFR SFF_53  (bistsel,TDO_ISR,tdi_g4844,int_hold,g4844,CK,clockdr,updatedr,shiftdr,tdi_g4113,g449);
-    int_SFF_LSFR SFF_54  (bistsel,TDO_ISR,tdi_g4113,int_hold,g4113,CK,clockdr,updatedr,shiftdr,tdi_g6504,g118);
-    int_SFF_LSFR SFF_55  (bistsel,TDO_ISR,tdi_g6504,int_hold,g6504,CK,clockdr,updatedr,shiftdr,tdi_g3224,g528);
-    int_SFF_LSFR SFF_56  (bistsel,TDO_ISR,tdi_g3224,int_hold,g3224,CK,clockdr,updatedr,shiftdr,tdi_g4855,g284);
-    int_SFF_LSFR SFF_57  (bistsel,TDO_ISR,tdi_g4855,int_hold,g4855,CK,clockdr,updatedr,shiftdr,tdi_g4424,g426);
-    int_SFF_LSFR SFF_58  (bistsel,TDO_ISR,tdi_g4424,int_hold,g4424,CK,clockdr,updatedr,shiftdr,tdi_g5582,g634);
-    int_SFF_LSFR SFF_59  (bistsel,TDO_ISR,tdi_g5582,int_hold,g5582,CK,clockdr,updatedr,shiftdr,tdi_g6502,g669);
-    int_SFF_LSFR SFF_60  (bistsel,TDO_ISR,tdi_g6502,int_hold,g6502,CK,clockdr,updatedr,shiftdr,tdi_g6107,g520);
-    int_SFF_LSFR SFF_61  (bistsel,TDO_ISR,tdi_g6107,int_hold,g6107,CK,clockdr,updatedr,shiftdr,tdi_g5472,g281);
-    int_SFF_LSFR SFF_62  (bistsel,TDO_ISR,tdi_g5472,int_hold,g5472,CK,clockdr,updatedr,shiftdr,tdi_g6602,g175);
-    int_SFF_LSFR SFF_63  (bistsel,TDO_ISR,tdi_g6602,int_hold,g6602,CK,clockdr,updatedr,shiftdr,tdi_g5581,g15);
-    int_SFF_LSFR SFF_64  (bistsel,TDO_ISR,tdi_g5581,int_hold,g5581,CK,clockdr,updatedr,shiftdr,tdi_g6587,g631);
-    int_SFF_LSFR SFF_65  (bistsel,TDO_ISR,tdi_g6587,int_hold,g6587,CK,clockdr,updatedr,shiftdr,tdi_g4145,g69);
-    int_SFF_LSFR SFF_66  (bistsel,TDO_ISR,tdi_g4145,int_hold,g4145,CK,clockdr,updatedr,shiftdr,tdi_g2585,g693);
-    int_SFF_LSFR SFF_67  (bistsel,TDO_ISR,tdi_g2585,int_hold,g2585,CK,clockdr,updatedr,shiftdr,tdi_g4842,g337);
-    int_SFF_LSFR SFF_68  (bistsel,TDO_ISR,tdi_g4842,int_hold,g4842,CK,clockdr,updatedr,shiftdr,tdi_g2586,g457);
-    int_SFF_LSFR SFF_69  (bistsel,TDO_ISR,tdi_g2586,int_hold,g2586,CK,clockdr,updatedr,shiftdr,tdi_g1291,g486);
-    int_SFF_LSFR SFF_70  (bistsel,TDO_ISR,tdi_g1291,int_hold,g1291,CK,clockdr,updatedr,shiftdr,tdi_g4118,g471);
-    int_SFF_LSFR SFF_71  (bistsel,TDO_ISR,tdi_g4118,int_hold,g4118,CK,clockdr,updatedr,shiftdr,tdi_g3225,g328);
-    int_SFF_LSFR SFF_72  (bistsel,TDO_ISR,tdi_g3225,int_hold,g3225,CK,clockdr,updatedr,shiftdr,tdi_g4853,g285);
-    int_SFF_LSFR SFF_73  (bistsel,TDO_ISR,tdi_g4853,int_hold,g4853,CK,clockdr,updatedr,shiftdr,tdi_g4849,g418);
-    int_SFF_LSFR SFF_74  (bistsel,TDO_ISR,tdi_g4849,int_hold,g4849,CK,clockdr,updatedr,shiftdr,tdi_g6512,g402);
-    int_SFF_LSFR SFF_75  (bistsel,TDO_ISR,tdi_g6512,int_hold,g6512,CK,clockdr,updatedr,shiftdr,tdi_g3233,g297);
-    int_SFF_LSFR SFF_76  (bistsel,TDO_ISR,tdi_g3233,int_hold,g3233,CK,clockdr,updatedr,shiftdr,tdi_g4851,g212);
-    int_SFF_LSFR SFF_77  (bistsel,TDO_ISR,tdi_g4851,int_hold,g4851,CK,clockdr,updatedr,shiftdr,tdi_g4856,g410);
-    int_SFF_LSFR SFF_78  (bistsel,TDO_ISR,tdi_g4856,int_hold,g4856,CK,clockdr,updatedr,shiftdr,tdi_g6854,g430);
-    int_SFF_LSFR SFF_79  (bistsel,TDO_ISR,tdi_g6854,int_hold,g6854,CK,clockdr,updatedr,shiftdr,tdi_g1831,g33);
-    int_SFF_LSFR SFF_80  (bistsel,TDO_ISR,tdi_g1831,int_hold,g1831,CK,clockdr,updatedr,shiftdr,tdi_g4843,g662);
-    int_SFF_LSFR SFF_81  (bistsel,TDO_ISR,tdi_g4843,int_hold,g4843,CK,clockdr,updatedr,shiftdr,tdi_g6510,g453);
-    int_SFF_LSFR SFF_82  (bistsel,TDO_ISR,tdi_g6510,int_hold,g6510,CK,clockdr,updatedr,shiftdr,tdi_g6591,g269);
-    int_SFF_LSFR SFF_83  (bistsel,TDO_ISR,tdi_g6591,int_hold,g6591,CK,clockdr,updatedr,shiftdr,tdi_g4846,g574);
-    int_SFF_LSFR SFF_84  (bistsel,TDO_ISR,tdi_g4846,int_hold,g4846,CK,clockdr,updatedr,shiftdr,tdi_g1288,g441);
-    int_SFF_LSFR SFF_85  (bistsel,TDO_ISR,tdi_g1288,int_hold,g1288,CK,clockdr,updatedr,shiftdr,tdi_g5478,g664);
-    int_SFF_LSFR SFF_86  (bistsel,TDO_ISR,tdi_g5478,int_hold,g5478,CK,clockdr,updatedr,shiftdr,tdi_g6840,g349);
-    int_SFF_LSFR SFF_87  (bistsel,TDO_ISR,tdi_g6840,int_hold,g6840,CK,clockdr,updatedr,shiftdr,tdi_g6594,g211);
-    int_SFF_LSFR SFF_88  (bistsel,TDO_ISR,tdi_g6594,int_hold,g6594,CK,clockdr,updatedr,shiftdr,tdi_g5580,g586);
-    int_SFF_LSFR SFF_89  (bistsel,TDO_ISR,tdi_g5580,int_hold,g5580,CK,clockdr,updatedr,shiftdr,tdi_g6853,g571);
-    int_SFF_LSFR SFF_90  (bistsel,TDO_ISR,tdi_g6853,int_hold,g6853,CK,clockdr,updatedr,shiftdr,tdi_g4840,g29);
-    int_SFF_LSFR SFF_91  (bistsel,TDO_ISR,tdi_g4840,int_hold,g4840,CK,clockdr,updatedr,shiftdr,tdi_g4150,g326);
-    int_SFF_LSFR SFF_92  (bistsel,TDO_ISR,tdi_g4150,int_hold,g4150,CK,clockdr,updatedr,shiftdr,tdi_g5490,g698);
-    int_SFF_LSFR SFF_93  (bistsel,TDO_ISR,tdi_g5490,int_hold,g5490,CK,clockdr,updatedr,shiftdr,tdi_g6511,g654);
-    int_SFF_LSFR SFF_94  (bistsel,TDO_ISR,tdi_g6511,int_hold,g6511,CK,clockdr,updatedr,shiftdr,tdi_g4142,g293);
-    int_SFF_LSFR SFF_95  (bistsel,TDO_ISR,tdi_g4142,int_hold,g4142,CK,clockdr,updatedr,shiftdr,tdi_g4845,g690);
-    int_SFF_LSFR SFF_96  (bistsel,TDO_ISR,tdi_g4845,int_hold,g4845,CK,clockdr,updatedr,shiftdr,tdi_g5694,g445);
-    int_SFF_LSFR SFF_97  (bistsel,TDO_ISR,tdi_g5694,int_hold,g5694,CK,clockdr,updatedr,shiftdr,tdi_g6722,g374);
-    int_SFF_LSFR SFF_98  (bistsel,TDO_ISR,tdi_g6722,int_hold,g6722,CK,clockdr,updatedr,shiftdr,tdi_g4139,g6);
-    int_SFF_LSFR SFF_99  (bistsel,TDO_ISR,tdi_g4139,int_hold,g4139,CK,clockdr,updatedr,shiftdr,tdi_g5480,g687);
-    int_SFF_LSFR SFF_100 (bistsel,TDO_ISR,tdi_g5480,int_hold,g5480,CK,clockdr,updatedr,shiftdr,tdi_g5697,g357);
-    int_SFF_LSFR SFF_101 (bistsel,TDO_ISR,tdi_g5697,int_hold,g5697,CK,clockdr,updatedr,shiftdr,tdi_g6498,g386);
-    int_SFF_LSFR SFF_102 (bistsel,TDO_ISR,tdi_g6498,int_hold,g6498,CK,clockdr,updatedr,shiftdr,tdi_g4126,g504);
-    int_SFF_LSFR SFF_103 (bistsel,TDO_ISR,tdi_g4126,int_hold,g4126,CK,clockdr,updatedr,shiftdr,tdi_g5471,g665);
-    int_SFF_LSFR SFF_104 (bistsel,TDO_ISR,tdi_g5471,int_hold,g5471,CK,clockdr,updatedr,shiftdr,tdi_g6505,g166);
-    int_SFF_LSFR SFF_105 (bistsel,TDO_ISR,tdi_g6505,int_hold,g6505,CK,clockdr,updatedr,shiftdr,tdi_g6588,g541);
-    int_SFF_LSFR SFF_106 (bistsel,TDO_ISR,tdi_g6588,int_hold,g6588,CK,clockdr,updatedr,shiftdr,tdi_g5475,g74);
-    int_SFF_LSFR SFF_107 (bistsel,TDO_ISR,tdi_g5475,int_hold,g5475,CK,clockdr,updatedr,shiftdr,tdi_g4148,g338);
-    int_SFF_LSFR SFF_108 (bistsel,TDO_ISR,tdi_g4148,int_hold,g4148,CK,clockdr,updatedr,shiftdr,tdi_g6501,g696);
-    int_SFF_LSFR SFF_109 (bistsel,TDO_ISR,tdi_g6501,int_hold,g6501,CK,clockdr,updatedr,shiftdr,tdi_g6506,g516);
-    int_SFF_LSFR SFF_110 (bistsel,TDO_ISR,tdi_g6506,int_hold,g6506,CK,clockdr,updatedr,shiftdr,tdi_g4135,g536);
-    int_SFF_LSFR SFF_111 (bistsel,TDO_ISR,tdi_g4135,int_hold,g4135,CK,clockdr,updatedr,shiftdr,tdi_g5479,g683);
-    int_SFF_LSFR SFF_112 (bistsel,TDO_ISR,tdi_g5479,int_hold,g5479,CK,clockdr,updatedr,shiftdr,tdi_g6824,g353);
-    int_SFF_LSFR SFF_113 (bistsel,TDO_ISR,tdi_g6824,int_hold,g6824,CK,clockdr,updatedr,shiftdr,tdi_g3240,g545);
-    int_SFF_LSFR SFF_114 (bistsel,TDO_ISR,tdi_g3240,int_hold,g3240,CK,clockdr,updatedr,shiftdr,tdi_g5476,g254);
-    int_SFF_LSFR SFF_115 (bistsel,TDO_ISR,tdi_g5476,int_hold,g5476,CK,clockdr,updatedr,shiftdr,tdi_g3230,g341);
-    int_SFF_LSFR SFF_116 (bistsel,TDO_ISR,tdi_g3230,int_hold,g3230,CK,clockdr,updatedr,shiftdr,tdi_g6721,g290);
-    int_SFF_LSFR SFF_117 (bistsel,TDO_ISR,tdi_g6721,int_hold,g6721,CK,clockdr,updatedr,shiftdr,tdi_g3227,g2);
-    int_SFF_LSFR SFF_118 (bistsel,TDO_ISR,tdi_g3227,int_hold,g3227,CK,clockdr,updatedr,shiftdr,tdi_g6925,g287);
-    int_SFF_LSFR SFF_119 (bistsel,TDO_ISR,tdi_g6925,int_hold,g6925,CK,clockdr,updatedr,shiftdr,tdi_g5477,g336);
-    int_SFF_LSFR SFF_120 (bistsel,TDO_ISR,tdi_g5477,int_hold,g5477,CK,clockdr,updatedr,shiftdr,tdi_g5489,g345);
-    int_SFF_LSFR SFF_121 (bistsel,TDO_ISR,tdi_g5489,int_hold,g5489,CK,clockdr,updatedr,shiftdr,tdi_g4131,g628);
-    int_SFF_LSFR SFF_122 (bistsel,TDO_ISR,tdi_g4131,int_hold,g4131,CK,clockdr,updatedr,shiftdr,tdi_g6727,g679);
-    int_SFF_LSFR SFF_123 (bistsel,TDO_ISR,tdi_g6727,int_hold,g6727,CK,clockdr,updatedr,shiftdr,tdi_g4140,g28);
-    int_SFF_LSFR SFF_124 (bistsel,TDO_ISR,tdi_g4140,int_hold,g4140,CK,clockdr,updatedr,shiftdr,tdi_g6842,g688);
-    int_SFF_LSFR SFF_125 (bistsel,TDO_ISR,tdi_g6842,int_hold,g6842,CK,clockdr,updatedr,shiftdr,tdi_g4423,g283);
-    int_SFF_LSFR SFF_126 (bistsel,TDO_ISR,tdi_g4423,int_hold,g4423,CK,clockdr,updatedr,shiftdr,tdi_g6723,g613);
-    int_SFF_LSFR SFF_127 (bistsel,TDO_ISR,tdi_g6723,int_hold,g6723,CK,clockdr,updatedr,shiftdr,tdi_g6724,g10);
-    int_SFF_LSFR SFF_128 (bistsel,TDO_ISR,tdi_g6724,int_hold,g6724,CK,clockdr,updatedr,shiftdr,tdi_g4132,g14);
-    int_SFF_LSFR SFF_129 (bistsel,TDO_ISR,tdi_g4132,int_hold,g4132,CK,clockdr,updatedr,shiftdr,tdi_g6401,g680);
-    int_SFF_LSFR SFF_130 (bistsel,TDO_ISR,tdi_g6401,int_hold,g6401,CK,clockdr,updatedr,shiftdr,tdi_g5491,g143);
-    int_SFF_LSFR SFF_131 (bistsel,TDO_ISR,tdi_g5491,int_hold,g5491,CK,clockdr,updatedr,shiftdr,tdi_g4127,g672);
-    int_SFF_LSFR SFF_132 (bistsel,TDO_ISR,tdi_g4127,int_hold,g4127,CK,clockdr,updatedr,shiftdr,tdi_g6278,g667);
-    int_SFF_LSFR SFF_133 (bistsel,TDO_ISR,tdi_g6278,int_hold,g6278,CK,clockdr,updatedr,shiftdr,tdi_g6106,g366);
-    int_SFF_LSFR SFF_134 (bistsel,TDO_ISR,tdi_g6106,int_hold,g6106,CK,clockdr,updatedr,shiftdr,tdi_g6744,g279);
-    int_SFF_LSFR SFF_135 (bistsel,TDO_ISR,tdi_g6744,int_hold,g6744,CK,clockdr,updatedr,shiftdr,tdi_g6404,g492);
-    int_SFF_LSFR SFF_136 (bistsel,TDO_ISR,tdi_g6404,int_hold,g6404,CK,clockdr,updatedr,shiftdr,tdi_g4138,g170);
-    int_SFF_LSFR SFF_137 (bistsel,TDO_ISR,tdi_g4138,int_hold,g4138,CK,clockdr,updatedr,shiftdr,tdi_g3228,g686);
-    int_SFF_LSFR SFF_138 (bistsel,TDO_ISR,tdi_g3228,int_hold,g3228,CK,clockdr,updatedr,shiftdr,tdi_g1289,g288);
-    int_SFF_LSFR SFF_139 (bistsel,TDO_ISR,tdi_g1289,int_hold,g1289,CK,clockdr,updatedr,shiftdr,tdi_g4123,g638);
-    int_SFF_LSFR SFF_140 (bistsel,TDO_ISR,tdi_g4123,int_hold,g4123,CK,clockdr,updatedr,shiftdr,tdi_g4658,g602);
-    int_SFF_LSFR SFF_141 (bistsel,TDO_ISR,tdi_g4658,int_hold,g4658,CK,clockdr,updatedr,shiftdr,tdi_g5878,g642);
-    int_SFF_LSFR SFF_142 (bistsel,TDO_ISR,tdi_g5878,int_hold,g5878,CK,clockdr,updatedr,shiftdr,tdi_g4125,g280);
-    int_SFF_LSFR SFF_143 (bistsel,TDO_ISR,tdi_g4125,int_hold,g4125,CK,clockdr,updatedr,shiftdr,tdi_g4124,g663);
-    int_SFF_LSFR SFF_144 (bistsel,TDO_ISR,tdi_g4124,int_hold,g4124,CK,clockdr,updatedr,shiftdr,tdi_g5874,g610);
-    int_SFF_LSFR SFF_145 (bistsel,TDO_ISR,tdi_g5874,int_hold,g5874,CK,clockdr,updatedr,shiftdr,tdi_g6103,g148);
-    int_SFF_LSFR SFF_146 (bistsel,TDO_ISR,tdi_g6103,int_hold,g6103,CK,clockdr,updatedr,shiftdr,tdi_g1294,g209);
-    int_SFF_LSFR SFF_147 (bistsel,TDO_ISR,tdi_g1294,int_hold,g1294,CK,clockdr,updatedr,shiftdr,tdi_g1292,g675);
-    int_SFF_LSFR SFF_148 (bistsel,TDO_ISR,tdi_g1292,int_hold,g1292,CK,clockdr,updatedr,shiftdr,tdi_g4115,g478);
-    int_SFF_LSFR SFF_149 (bistsel,TDO_ISR,tdi_g4115,int_hold,g4115,CK,clockdr,updatedr,shiftdr,tdi_g6584,g122);
-    int_SFF_LSFR SFF_150 (bistsel,TDO_ISR,tdi_g6584,int_hold,g6584,CK,clockdr,updatedr,shiftdr,tdi_g6596,g54);
-    int_SFF_LSFR SFF_151 (bistsel,TDO_ISR,tdi_g6596,int_hold,g6596,CK,clockdr,updatedr,shiftdr,tdi_g3226,g594);
-    int_SFF_LSFR SFF_152 (bistsel,TDO_ISR,tdi_g3226,int_hold,g3226,CK,clockdr,updatedr,shiftdr,tdi_g2587,g286);
-    int_SFF_LSFR SFF_153 (bistsel,TDO_ISR,tdi_g2587,int_hold,g2587,CK,clockdr,updatedr,shiftdr,tdi_g4657,g489);
-    int_SFF_LSFR SFF_154 (bistsel,TDO_ISR,tdi_g4657,int_hold,g4657,CK,clockdr,updatedr,shiftdr,tdi_g6589,g616);
-    int_SFF_LSFR SFF_155 (bistsel,TDO_ISR,tdi_g6589,int_hold,g6589,CK,clockdr,updatedr,shiftdr,tdi_g3234,g79);
-    int_SFF_LSFR SFF_156 (bistsel,TDO_ISR,tdi_g3234,int_hold,g3234,CK,clockdr,updatedr,shiftdr,tdi_g3238,g218);
-    int_SFF_LSFR SFF_157 (bistsel,TDO_ISR,tdi_g3238,int_hold,g3238,CK,clockdr,updatedr,shiftdr,tdi_g6592,g242);
-    int_SFF_LSFR SFF_158 (bistsel,TDO_ISR,tdi_g6592,int_hold,g6592,CK,clockdr,updatedr,shiftdr,tdi_g5473,g578);
-    int_SFF_LSFR SFF_159 (bistsel,TDO_ISR,tdi_g5473,int_hold,g5473,CK,clockdr,updatedr,shiftdr,tdi_g4114,g184);
-    int_SFF_LSFR SFF_160 (bistsel,TDO_ISR,tdi_g4114,int_hold,g4114,CK,clockdr,updatedr,shiftdr,tdi_g6800,g119);
-    int_SFF_LSFR SFF_161 (bistsel,TDO_ISR,tdi_g6800,int_hold,g6800,CK,clockdr,updatedr,shiftdr,tdi_g5141,g668);
-    int_SFF_LSFR SFF_162 (bistsel,TDO_ISR,tdi_g5141,int_hold,g5141,CK,clockdr,updatedr,shiftdr,tdi_g4854,g139);
-    int_SFF_LSFR SFF_163 (bistsel,TDO_ISR,tdi_g4854,int_hold,g4854,CK,clockdr,updatedr,shiftdr,tdi_g6839,g422);
-    int_SFF_LSFR SFF_164 (bistsel,TDO_ISR,tdi_g6839,int_hold,g6839,CK,clockdr,updatedr,shiftdr,tdi_g5699,g210);
-    int_SFF_LSFR SFF_165 (bistsel,TDO_ISR,tdi_g5699,int_hold,g5699,CK,clockdr,updatedr,shiftdr,tdi_g3236,g394);
-    int_SFF_LSFR SFF_166 (bistsel,TDO_ISR,tdi_g3236,int_hold,g3236,CK,clockdr,updatedr,shiftdr,tdi_g6601,g230);
-    int_SFF_LSFR SFF_167 (bistsel,TDO_ISR,tdi_g6601,int_hold,g6601,CK,clockdr,updatedr,shiftdr,tdi_g5875,g25);
-    int_SFF_LSFR SFF_168 (bistsel,TDO_ISR,tdi_g5875,int_hold,g5875,CK,clockdr,updatedr,shiftdr,tdi_g4425,g204);
-    int_SFF_LSFR SFF_169 (bistsel,TDO_ISR,tdi_g4425,int_hold,g4425,CK,clockdr,updatedr,shiftdr,tdi_g5329,g658);
-    int_SFF_LSFR SFF_170 (bistsel,TDO_ISR,tdi_g5329,int_hold,g5329,CK,clockdr,updatedr,shiftdr,tdi_g5695,g650);
-    int_SFF_LSFR SFF_171 (bistsel,TDO_ISR,tdi_g5695,int_hold,g5695,CK,clockdr,updatedr,shiftdr,tdi_g6499,g378);
-    int_SFF_LSFR SFF_172 (bistsel,TDO_ISR,tdi_g6499,int_hold,g6499,CK,clockdr,updatedr,shiftdr,tdi_g6825,g508);
-    int_SFF_LSFR SFF_173 (bistsel,TDO_ISR,tdi_g6825,int_hold,g6825,CK,clockdr,updatedr,shiftdr,tdi_g5693,g548);
-    int_SFF_LSFR SFF_174 (bistsel,TDO_ISR,tdi_g5693,int_hold,g5693,CK,clockdr,updatedr,shiftdr,tdi_g4850,g370);
-    int_SFF_LSFR SFF_175 (bistsel,TDO_ISR,tdi_g4850,int_hold,g4850,CK,clockdr,updatedr,shiftdr,tdi_g3237,g406);
-    int_SFF_LSFR SFF_176 (bistsel,TDO_ISR,tdi_g3237,int_hold,g3237,CK,clockdr,updatedr,shiftdr,tdi_g6497,g236);
-    int_SFF_LSFR SFF_177 (bistsel,TDO_ISR,tdi_g6497,int_hold,g6497,CK,clockdr,updatedr,shiftdr,tdi_g6100,g500);
-    int_SFF_LSFR SFF_178 (bistsel,TDO_ISR,tdi_g6100,int_hold,g6100,CK,clockdr,updatedr,shiftdr,tdi_g6509,g205);
-    int_SFF_LSFR SFF_179 (bistsel,TDO_ISR,tdi_g6509,int_hold,g6509,CK,clockdr,updatedr,shiftdr,tdi_g4128,g197);
-    int_SFF_LSFR SFF_180 (bistsel,TDO_ISR,tdi_g4128,int_hold,g4128,CK,clockdr,updatedr,shiftdr,tdi_g4116,g666);
-    int_SFF_LSFR SFF_181 (bistsel,TDO_ISR,tdi_g4116,int_hold,g4116,CK,clockdr,updatedr,shiftdr,tdi_g6503,g114);
-    int_SFF_LSFR SFF_182 (bistsel,TDO_ISR,tdi_g6503,int_hold,g6503,CK,clockdr,updatedr,shiftdr,tdi_g3241,g524);
-    int_SFF_LSFR SFF_183 (bistsel,TDO_ISR,tdi_g3241,int_hold,g3241,CK,clockdr,updatedr,shiftdr,tdi_g6277,g260);
-    int_SFF_LSFR SFF_184 (bistsel,TDO_ISR,tdi_g6277,int_hold,g6277,CK,clockdr,updatedr,shiftdr,tdi_g5139,g111);
-    int_SFF_LSFR SFF_185 (bistsel,TDO_ISR,tdi_g5139,int_hold,g5139,CK,clockdr,updatedr,shiftdr,tdi_g6598,g131);
-    int_SFF_LSFR SFF_186 (bistsel,TDO_ISR,tdi_g6598,int_hold,g6598,CK,clockdr,updatedr,shiftdr,tdi_g6600,g7);
-    int_SFF_LSFR SFF_187 (bistsel,TDO_ISR,tdi_g6600,int_hold,g6600,CK,clockdr,updatedr,shiftdr,tdi_g4129,g19);
-    int_SFF_LSFR SFF_188 (bistsel,TDO_ISR,tdi_g4129,int_hold,g4129,CK,clockdr,updatedr,shiftdr,tdi_g6593,g677);
-    int_SFF_LSFR SFF_189 (bistsel,TDO_ISR,tdi_g6593,int_hold,g6593,CK,clockdr,updatedr,shiftdr,tdi_g6801,g582);
-    int_SFF_LSFR SFF_190 (bistsel,TDO_ISR,tdi_g6801,int_hold,g6801,CK,clockdr,updatedr,shiftdr,tdi_g4426,g485);
-    int_SFF_LSFR SFF_191 (bistsel,TDO_ISR,tdi_g4426,int_hold,g4426,CK,clockdr,updatedr,shiftdr,tdi_g5474,g699);
-    int_SFF_LSFR SFF_192 (bistsel,TDO_ISR,tdi_g5474,int_hold,g5474,CK,clockdr,updatedr,shiftdr,tdi_g5140,g193);
-    int_SFF_LSFR SFF_193 (bistsel,TDO_ISR,tdi_g5140,int_hold,g5140,CK,clockdr,updatedr,shiftdr,tdi_g5696,g135);
-    int_SFF_LSFR SFF_194 (bistsel,TDO_ISR,tdi_g5696,int_hold,g5696,CK,clockdr,updatedr,shiftdr,tdi_g4852,g382);
-    int_SFF_LSFR SFF_195 (bistsel,TDO_ISR,tdi_g4852,int_hold,g4852,CK,clockdr,updatedr,shiftdr,tdi_g4848,g414);
-    int_SFF_LSFR SFF_196 (bistsel,TDO_ISR,tdi_g4848,int_hold,g4848,CK,clockdr,updatedr,shiftdr,tdi_g4659,g434);
-    int_SFF_LSFR SFF_197 (bistsel,TDO_ISR,tdi_g4659,int_hold,g4659,CK,clockdr,updatedr,shiftdr,tdi_g6583,g266);
-    int_SFF_LSFR SFF_198 (bistsel,TDO_ISR,tdi_g6583,int_hold,g6583,CK,clockdr,updatedr,shiftdr,tdi_g6402,g49);
-    int_SFF_LSFR SFF_199 (bistsel,TDO_ISR,tdi_g6402,int_hold,g6402,CK,clockdr,updatedr,shiftdr,tdi_g4144,g152);
-    int_SFF_LSFR SFF_200 (bistsel,TDO_ISR,tdi_g4144,int_hold,g4144,CK,clockdr,updatedr,shiftdr,tdi_g6104,g692);
-    int_SFF_LSFR SFF_201 (bistsel,TDO_ISR,tdi_g6104,int_hold,g6104,CK,clockdr,updatedr,shiftdr,tdi_g6941,g277);
-    int_SFF_LSFR SFF_202 (bistsel,TDO_ISR,tdi_g6941,int_hold,g6941,CK,clockdr,updatedr,shiftdr,tdi_g6403,g127);
-    int_SFF_LSFR SFF_203 (bistsel,TDO_ISR,tdi_g6403,int_hold,g6403,CK,clockdr,updatedr,shiftdr,tdi_g6500,g161);
-    int_SFF_LSFR SFF_204 (bistsel,TDO_ISR,tdi_g6500,int_hold,g6500,CK,clockdr,updatedr,shiftdr,tdi_g6508,g512);
-    int_SFF_LSFR SFF_205 (bistsel,TDO_ISR,tdi_g6508,int_hold,g6508,CK,clockdr,updatedr,shiftdr,tdi_g6586,g532);
-    int_SFF_LSFR SFF_206 (bistsel,TDO_ISR,tdi_g6586,int_hold,g6586,CK,clockdr,updatedr,shiftdr,tdi_g4146,g64);
-    int_SFF_LSFR SFF_207 (bistsel,TDO_ISR,tdi_g4146,int_hold,g4146,CK,clockdr,updatedr,shiftdr,tdi_g4143,g694);
-    int_SFF_LSFR SFF_208 (bistsel,TDO_ISR,tdi_g4143,int_hold,g4143,CK,clockdr,updatedr,shiftdr,tdi_g6720,g691);
-    int_SFF_LSFR SFF_209 (bistsel,TDO_ISR,tdi_g6720,int_hold,g6720,CK,clockdr,updatedr,shiftdr,tdi_g6585,g1);
-    int_SFF_LSFR SFF_210 (bistsel,TDO_ISR,tdi_g6585,int_hold,g6585,CK,clockdr,updatedr,shiftdr,TDO_ISR,g59);
+assign g678 = 0;
+assign g332 = 1;
+assign g123 = 0;
+assign g207 = 0;
+assign g695 = 0;
+assign g461 = 1;
+assign g18 = 0;
+assign g292 = 0;
+assign g331 = 1;
+assign g689 = 0;
+assign g24 = 1;
+assign g465 = 0;
+assign g84 = 0;
+assign g291 = 1;
+assign g676 = 1;
+assign g622 = 0;
+assign g117 = 0;
+assign g278 = 1;
+assign g128 = 0;
+assign g598 = 1;
+assign g554 = 1;
+assign g496 = 1;
+assign g179 = 1;
+assign g48 = 1;
+assign g590 = 1;
+assign g551 = 1;
+assign g682 = 0;
+assign g11 = 1;
+assign g606 = 0;
+assign g188 = 1;
+assign g646 = 1;
+assign g327 = 1;
+assign g361 = 0;
+assign g289 = 1;
+assign g398 = 1;
+assign g684 = 0;
+assign g619 = 1;
+assign g208 = 0;
+assign g248 = 1;
+assign g390 = 1;
+assign g625 = 1;
+assign g681 = 0;
+assign g437 = 1;
+assign g276 = 1;
+assign g3 = 1;
+assign g323 = 0;
+assign g224 = 0;
+assign g685 = 0;
+assign g43 = 1;
+assign g157 = 0;
+assign g282 = 1;
+assign g697 = 0;
+assign g206 = 0;
+assign g449 = 1;
+assign g118 = 1;
+assign g528 = 1;
+assign g284 = 1;
+assign g426 = 0;
+assign g634 = 0;
+assign g669 = 0;
+assign g520 = 0;
+assign g281 = 1;
+assign g175 = 0;
+assign g15 = 1;
+assign g631 = 0;
+assign g69 = 0;
+assign g693 = 0;
+assign g337 = 0;
+assign g457 = 1;
+assign g486 = 1;
+assign g471 = 1;
+assign g328 = 1;
+assign g285 = 0;
+assign g418 = 1;
+assign g402 = 1;
+assign g297 = 0;
+assign g212 = 1;
+assign g410 = 0;
+assign g430 = 0;
+assign g33 = 0;
+assign g662 = 1;
+assign g453 = 1;
+assign g269 = 1;
+assign g574 = 1;
+assign g441 = 0;
+assign g664 = 0;
+assign g349 = 1;
+assign g211 = 0;
+assign g586 = 1;
+assign g571 = 0;
+assign g29 = 0;
+assign g326 = 1;
+assign g698 = 1;
+assign g654 = 0;
+assign g293 = 1;
+assign g690 = 0;
+assign g445 = 0;
+assign g374 = 0;
+assign g6 = 0;
+assign g687 = 1;
+assign g357 = 1;
+assign g386 = 1;
+assign g504 = 1;
+assign g665 = 0;
+assign g166 = 0;
+assign g541 = 1;
+assign g74 = 1;
+assign g338 = 1;
+assign g696 = 1;
+assign g516 = 0;
+assign g536 = 1;
+assign g683 = 1;
+assign g353 = 1;
+assign g545 = 0;
+assign g254 = 1;
+assign g341 = 0;
+assign g290 = 1;
+assign g2 = 0;
+assign g287 = 0;
+assign g336 = 1;
+assign g345 = 1;
+assign g628 = 0;
+assign g679 = 1;
+assign g28 = 0;
+assign g688 = 1;
+assign g283 = 0;
+assign g613 = 0;
+assign g10 = 1;
+assign g14 = 1;
+assign g680 = 1;
+assign g143 = 1;
+assign g672 = 1;
+assign g667 = 0;
+assign g366 = 1;
+assign g279 = 1;
+assign g492 = 0;
+assign g170 = 0;
+assign g686 = 1;
+assign g288 = 0;
+assign g638 = 1;
+assign g602 = 0;
+assign g642 = 1;
+assign g280 = 0;
+assign g663 = 1;
+assign g610 = 1;
+assign g148 = 0;
+assign g209 = 0;
+assign g675 = 1;
+assign g478 = 1;
+assign g122 = 0;
+assign g54 = 1;
+assign g594 = 1;
+assign g286 = 1;
+assign g489 = 1;
+assign g616 = 1;
+assign g79 = 0;
+assign g218 = 1;
+assign g242 = 0;
+assign g578 = 1;
+assign g184 = 1;
+assign g119 = 1;
+assign g668 = 0;
+assign g139 = 1;
+assign g422 = 0;
+assign g210 = 1;
+assign g394 = 1;
+assign g230 = 0;
+assign g25 = 0;
+assign g204 = 1;
+assign g658 = 0;
+assign g650 = 0;
+assign g378 = 1;
+assign g508 = 0;
+assign g548 = 1;
+assign g370 = 0;
+assign g406 = 1;
+assign g236 = 0;
+assign g500 = 1;
+assign g205 = 1;
+assign g197 = 1;
+assign g666 = 1;
+assign g114 = 1;
+assign g524 = 1;
+assign g260 = 0;
+assign g111 = 0;
+assign g131 = 0;
+assign g7 = 1;
+assign g19 = 1;
+assign g677 = 0;
+assign g582 = 1;
+assign g485 = 1;
+assign g699 = 1;
+assign g193 = 1;
+assign g135 = 0;
+assign g382 = 1;
+assign g414 = 1;
+assign g434 = 0;
+assign g266 = 0;
+assign g49 = 0;
+assign g152 = 0;
+assign g692 = 1;
+assign g277 = 1;
+assign g127 = 1;
+assign g161 = 1;
+assign g512 = 0;
+assign g532 = 0;
+assign g64 = 0;
+assign g694 = 0;
+assign g691 = 1;
+assign g1 = 1;
+assign g59 = 1;
 
   not NOT_0(I8854,g6696);
   not NOT_1(g1289,I2272);
