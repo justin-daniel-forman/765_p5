@@ -63,20 +63,20 @@ module TOP_TB();
     };
 
     assign outs = {
-      DUT.BSR.cut_g2584,
-      DUT.BSR.cut_g3222,
-      DUT.BSR.cut_g3600,
-      DUT.BSR.cut_g4307,
-      DUT.BSR.cut_g4321,
-      DUT.BSR.cut_g4422,
-      DUT.BSR.cut_g4809,
-      DUT.BSR.cut_g5137,
-      DUT.BSR.cut_g5468,
-      DUT.BSR.cut_g5469,
-      DUT.BSR.cut_g5692,
-      DUT.BSR.cut_g6282,
-      DUT.BSR.cut_g6284, //this
-      DUT.BSR.cut_g6360, //here
+      DUT.BSR.cut_g2584, //0
+      DUT.BSR.cut_g3222, //1
+      DUT.BSR.cut_g3600, //2
+      DUT.BSR.cut_g4307, //3
+      DUT.BSR.cut_g4321, //4
+      DUT.BSR.cut_g4422, //5
+      DUT.BSR.cut_g4809, //6
+      DUT.BSR.cut_g5137, //7
+      DUT.BSR.cut_g5468, //8
+      DUT.BSR.cut_g5469, //9
+      DUT.BSR.cut_g5692, //10
+      DUT.BSR.cut_g6282, //11
+      DUT.BSR.cut_g6284, //12
+      DUT.BSR.cut_g6360, //13
       DUT.BSR.cut_g6362, //bad
       DUT.BSR.cut_g6364,
       DUT.BSR.cut_g6366,
@@ -334,123 +334,6 @@ module TOP_TB();
     reg [210:0] r_int;
     initial begin
 
-        $monitor($stime,, "\tCUT input:  %b\n\t\tCUT output: %b\n\t\tCUT flops: %b",
-            {DUT.BSR.cut_g89,
-             DUT.BSR.cut_g94,
-             DUT.BSR.cut_g98,
-             DUT.BSR.cut_g102,
-             DUT.BSR.cut_g107,
-             DUT.BSR.cut_g301,
-             DUT.BSR.cut_g306,
-             DUT.BSR.cut_g310,
-             DUT.BSR.cut_g314,
-             DUT.BSR.cut_g319,
-             DUT.BSR.cut_g557,
-             DUT.BSR.cut_g558,
-             DUT.BSR.cut_g559,
-             DUT.BSR.cut_g560,
-             DUT.BSR.cut_g561,
-             DUT.BSR.cut_g562,
-             DUT.BSR.cut_g563,
-             DUT.BSR.cut_g564,
-             DUT.BSR.cut_g705,
-             DUT.BSR.cut_g639,
-             DUT.BSR.cut_g567,
-             DUT.BSR.cut_g45,
-             DUT.BSR.cut_g42,
-             DUT.BSR.cut_g39,
-             DUT.BSR.cut_g702,
-             DUT.BSR.cut_g32,
-             DUT.BSR.cut_g38,
-             DUT.BSR.cut_g46,
-             DUT.BSR.cut_g36,
-             DUT.BSR.cut_g47,
-             DUT.BSR.cut_g40,
-             DUT.BSR.cut_g37,
-             DUT.BSR.cut_g41,
-             DUT.BSR.cut_g22,
-             DUT.BSR.cut_g44,
-             DUT.BSR.cut_g23},
-            {DUT.BSR.cut_g2584,
-             DUT.BSR.cut_g3222,
-             DUT.BSR.cut_g3600,
-             DUT.BSR.cut_g4307,
-             DUT.BSR.cut_g4321,
-             DUT.BSR.cut_g4422,
-             DUT.BSR.cut_g4809,
-             DUT.BSR.cut_g5137,
-             DUT.BSR.cut_g5468,
-             DUT.BSR.cut_g5469,
-             DUT.BSR.cut_g5692,
-             DUT.BSR.cut_g6282,
-             DUT.BSR.cut_g6284,
-             DUT.BSR.cut_g6360,
-             DUT.BSR.cut_g6362,
-             DUT.BSR.cut_g6364,
-             DUT.BSR.cut_g6366,
-             DUT.BSR.cut_g6368,
-             DUT.BSR.cut_g6370,
-             DUT.BSR.cut_g6372,
-             DUT.BSR.cut_g6374,
-             DUT.BSR.cut_g6728,
-             DUT.BSR.cut_g1290,
-             DUT.BSR.cut_g4121,
-             DUT.BSR.cut_g4108,
-             DUT.BSR.cut_g4106,
-             DUT.BSR.cut_g4103,
-             DUT.BSR.cut_g1293,
-             DUT.BSR.cut_g4099,
-             DUT.BSR.cut_g4102,
-             DUT.BSR.cut_g4109,
-             DUT.BSR.cut_g4100,
-             DUT.BSR.cut_g4112,
-             DUT.BSR.cut_g4105,
-             DUT.BSR.cut_g4101,
-             DUT.BSR.cut_g4110,
-             DUT.BSR.cut_g4104,
-             DUT.BSR.cut_g4107,
-             DUT.BSR.cut_g4098},
-             {DUT.BSR.s9234_IS.SFF_0.dout,
-             DUT.BSR.s9234_IS.SFF_1.dout,
-             DUT.BSR.s9234_IS.SFF_2.dout,
-             DUT.BSR.s9234_IS.SFF_3.dout,
-             DUT.BSR.s9234_IS.SFF_4.dout,
-             DUT.BSR.s9234_IS.SFF_5.dout,
-             DUT.BSR.s9234_IS.SFF_6.dout,
-             DUT.BSR.s9234_IS.SFF_7.dout,
-             DUT.BSR.s9234_IS.SFF_8.dout,
-             DUT.BSR.s9234_IS.SFF_9.dout,
-             DUT.BSR.s9234_IS.SFF_10.dout,
-             DUT.BSR.s9234_IS.SFF_11.dout,
-             DUT.BSR.s9234_IS.SFF_12.dout,
-             DUT.BSR.s9234_IS.SFF_13.dout,
-             DUT.BSR.s9234_IS.SFF_14.dout,
-             DUT.BSR.s9234_IS.SFF_15.dout,
-             DUT.BSR.s9234_IS.SFF_16.dout,
-             DUT.BSR.s9234_IS.SFF_17.dout,
-             DUT.BSR.s9234_IS.SFF_18.dout,
-             DUT.BSR.s9234_IS.SFF_19.dout,
-             DUT.BSR.s9234_IS.SFF_20.dout,
-             DUT.BSR.s9234_IS.SFF_21.dout,
-             DUT.BSR.s9234_IS.SFF_22.dout,
-             DUT.BSR.s9234_IS.SFF_23.dout,
-             DUT.BSR.s9234_IS.SFF_24.dout,
-             DUT.BSR.s9234_IS.SFF_25.dout,
-             DUT.BSR.s9234_IS.SFF_26.dout,
-             DUT.BSR.s9234_IS.SFF_100.dout,
-             DUT.BSR.s9234_IS.SFF_200.dout,
-             DUT.BSR.s9234_IS.SFF_203.dout,
-             DUT.BSR.s9234_IS.SFF_204.dout,
-             DUT.BSR.s9234_IS.SFF_205.dout,
-             DUT.BSR.s9234_IS.SFF_206.dout,
-             DUT.BSR.s9234_IS.SFF_207.dout,
-             DUT.BSR.s9234_IS.SFF_208.dout,
-             DUT.BSR.s9234_IS.SFF_209.dout,
-             DUT.BSR.s9234_IS.SFF_210.dout
-
-             }
-        );
-
         //Assign PIs and observe POs
         assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
         g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
@@ -468,7 +351,7 @@ module TOP_TB();
 
         TRST = 1;
         shift_into_ir(2'b10);
-        shift_into_int_dr(211'b1110000111100001101111011000111111010101001001101011101011111011001101010100110111110010101100101011101111001111000010110010100111100010110111100001010000111100101000111011101011011101011111110100110010100100010);
+        shift_into_int_dr(211'b111000011110000110111101100011111101010100100110101110101111101100110101010011011111001010110010101110111100111100001011001010011110001011011110000101000011110010100011101110101101110101111111_0100_1100_1010_0100_010);
 
         //Apply one cycle to the circuit
         @(posedge CK);
@@ -578,14 +461,14 @@ module TOP_TB();
             TMS = 0;
             @(posedge TCLK); //Advance to Capture DR
 
-            ii = 0;
-            while(ii <= 210) begin
-
+            ii = 210;
+            while(ii >= 0) begin
+                $display("GOING!");
                 @(posedge TCLK); //Advance to Shift DR
                 TDI = v[ii];
 
                 // Return back to the initial state if we aren't done
-                if(ii == 210) begin
+                if(ii == 0) begin
 
                     TMS = 1;
                     @(posedge TCLK); //Advance to Exit1 DR
@@ -596,28 +479,8 @@ module TOP_TB();
                     @(posedge TCLK);
 
                 end
-                ii = ii + 1;
+                ii = ii - 1;
             end
-
-            $display("Internal DR contains: %h",
-             {DUT.BSR.s9234_IS.SFF_0.tdo,
-             DUT.BSR.s9234_IS.SFF_1.tdo,
-             DUT.BSR.s9234_IS.SFF_2.tdo,
-             DUT.BSR.s9234_IS.SFF_3.tdo,
-             DUT.BSR.s9234_IS.SFF_4.tdo,
-             DUT.BSR.s9234_IS.SFF_5.tdo,
-             DUT.BSR.s9234_IS.SFF_6.tdo,
-             DUT.BSR.s9234_IS.SFF_7.tdo,
-             DUT.BSR.s9234_IS.SFF_8.tdo,
-             DUT.BSR.s9234_IS.SFF_9.tdo,
-             DUT.BSR.s9234_IS.SFF_100.tdo,
-             DUT.BSR.s9234_IS.SFF_150.tdo,
-             DUT.BSR.s9234_IS.SFF_200.tdo,
-             DUT.BSR.s9234_IS.SFF_207.tdo,
-             DUT.BSR.s9234_IS.SFF_208.tdo,
-             DUT.BSR.s9234_IS.SFF_209.tdo,
-             DUT.BSR.s9234_IS.SFF_210.tdo});
-
         end
     endtask
 
