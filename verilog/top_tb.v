@@ -364,9 +364,9 @@ module TOP_TB();
         @(posedge TCLK);
         @(posedge TCLK);
 
-//        shift_into_ir(2'b11);
+        shift_into_ir(2'b11);
 //        $display("STARTING BIST");
-//        shift_into_int_dr(0);
+        shift_into_int_dr(211'hf00d);
 //        @(posedge TCLK);
 //
 //

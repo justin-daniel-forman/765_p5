@@ -78,9 +78,28 @@ module int_SFF_LSFR(
     xor (val_bist, feedback, tdi);
     u_mux2(tdi_bist, tdi, val_bist, bistsel);
 
-    int_SFF isff(tdi, hold, din, ck, clockdr, updatedr, shiftdr, tdo, dout);
+    int_SFF isff(tdi_bist, hold, din, ck, clockdr, updatedr, shiftdr, tdo, dout);
 
 endmodule //int_SFF_LSFR
+
+
+module int_SFF_XXXX(
+    input   wire bistsel,   //selects bist mode
+    input   wire feedback,  //feedback from LSFR
+    input   wire tdi,       //local shift input from prev scan stage
+    input   wire hold,      //determines normal vs test operation output
+    input   wire din,       //local data in from normal ff
+    input   wire ck,        //Normal system clock
+    input   wire clockdr,   //Clock used for scanchain flops
+    input   wire updatedr,  //captures current value of din
+    input   wire shiftdr,   //propagates tdo from prev stage
+    output  wire tdo,       //local shift output from curr scan stage
+    output  wire dout       //local data out from normal ff
+);
+
+    int_SFF isff(tdi, hold, din, ck, clockdr, updatedr, shiftdr, tdo, dout);
+
+endmodule //int_SFF_XXXX
 
 
 // Chain of ffs to store the JTAG instruction
