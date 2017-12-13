@@ -11,12 +11,12 @@ module TOP_TB();
     g4108,g4106,g4103,g1293,g4099,g4102,g4109,g4100,g4112,g4105,g4101,g4110,
     g4104,g4107,g4098,TDO;
 
-    s9234_JTAG_TOP DUT(TMS,CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,
+    s9234_JTAG_TOP DUT(CK,g102,g107,g1290,g1293,g22,g23,g2584,g301,g306,g310,g314,g319,
         g32,g3222,g36,g3600,g37,g38,g39,g40,g4098,g4099,g41,g4100,g4101,g4102,g4103,
         g4104,g4105,g4106,g4107,g4108,g4109,g4110,g4112,g4121,g42,g4307,g4321,g44,
         g4422,g45,g46,g47,g4809,g5137,g5468,g5469,g557,g558,g559,g560,g561,g562,g563,
         g564,g567,g5692,g6282,g6284,g6360,g6362,g6364,g6366,g6368,g6370,g6372,g6374,
-        g639,g6728,g702,g705,g89,g94,g98,TDI,TRST,TDO);
+        g639,g6728,g702,g705,g89,g94,g98,TMS,TDI,TRST,TDO);
 
 
     wire [35:0]  ins;
@@ -63,45 +63,45 @@ module TOP_TB();
     };
 
     assign outs = {
-      DUT.BSR.cut_g2584, //0
-      DUT.BSR.cut_g3222, //1
-      DUT.BSR.cut_g3600, //2
-      DUT.BSR.cut_g4307, //3
-      DUT.BSR.cut_g4321, //4
-      DUT.BSR.cut_g4422, //5
-      DUT.BSR.cut_g4809, //6
-      DUT.BSR.cut_g5137, //7
-      DUT.BSR.cut_g5468, //8
-      DUT.BSR.cut_g5469, //9
-      DUT.BSR.cut_g5692, //10
-      DUT.BSR.cut_g6282, //11
-      DUT.BSR.cut_g6284, //12
-      DUT.BSR.cut_g6360, //13
-      DUT.BSR.cut_g6362, //bad
-      DUT.BSR.cut_g6364,
-      DUT.BSR.cut_g6366,
-      DUT.BSR.cut_g6368,
-      DUT.BSR.cut_g6370,
-      DUT.BSR.cut_g6372,
-      DUT.BSR.cut_g6374,
-      DUT.BSR.cut_g6728,
-      DUT.BSR.cut_g1290,
-      DUT.BSR.cut_g4121,
-      DUT.BSR.cut_g4108,
-      DUT.BSR.cut_g4106,
-      DUT.BSR.cut_g4103,
-      DUT.BSR.cut_g1293,
-      DUT.BSR.cut_g4099,
-      DUT.BSR.cut_g4102,
-      DUT.BSR.cut_g4109,
-      DUT.BSR.cut_g4100,
-      DUT.BSR.cut_g4112,
-      DUT.BSR.cut_g4105,
-      DUT.BSR.cut_g4101,
-      DUT.BSR.cut_g4110,
-      DUT.BSR.cut_g4104,
-      DUT.BSR.cut_g4107,
-      DUT.BSR.cut_g4098
+      g2584, //0
+      g3222, //1
+      g3600, //2
+      g4307, //3
+      g4321, //4
+      g4422, //5
+      g4809, //6
+      g5137, //7
+      g5468, //8
+      g5469, //9
+      g5692, //10
+      g6282, //11
+      g6284, //12
+      g6360, //13
+      g6362, //bad
+      g6364,
+      g6366,
+      g6368,
+      g6370,
+      g6372,
+      g6374,
+      g6728,
+      g1290,
+      g4121,
+      g4108,
+      g4106,
+      g4103,
+      g1293,
+      g4099,
+      g4102,
+      g4109,
+      g4100,
+      g4112,
+      g4105,
+      g4101,
+      g4110,
+      g4104,
+      g4107,
+      g4098
     };
 
     assign internal_outs = {
@@ -332,23 +332,30 @@ module TOP_TB();
     reg [210:0] r_int;
     initial begin
 
-        check_etr();
-
+//        //Reset the FSM
 //        TMS  = 1;
 //        TRST = 0;
 //        @(posedge CK);
+
+//        //Assign PIs and observe POs
+//        {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
+//        g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
+//        g41,g22,g44,g23} = 36'b1101_1000_0011_0101_1110_1000_1101_0010_1010;
 //
+//        TMS = 1;
 //        TRST = 1;
+//        shift_into_ir(2'b10);
+//        shift_into_int_dr(211'b111000011110000110111101100011111101010100100110101110101111101100110101010011011111001010110010101110111100111100001011001010011110001011011110000101000011110010100011101110101101110101111111_0100_1100_1010_0100_010);
 //        @(posedge CK);
-//
 //        shift_into_ir(2'b11);
-//        @(posedge CK);
+//        shift_into_int_dr(211'b0);
 //
 //        //Assign PIs and observe POs
 //        assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
 //        g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
 //        g41,g22,g44,g23} = 36'b1101_1000_0011_0101_1110_1000_1101_0010_1010;
 //
+
 //        //These values must be held for normal operation
 //        TMS  = 1;
 //        TRST = 0;
@@ -358,37 +365,15 @@ module TOP_TB();
 //        @(posedge CK);
 //        @(posedge CK);
 //        @(posedge CK);
-//
-//        TRST = 1;
-//        shift_into_ir(2'b10);
-//        shift_into_int_dr(211'b111000011110000110111101100011111101010100100110101110101111101100110101010011011111001010110010101110111100111100001011001010011110001011011110000101000011110010100011101110101101110101111111_0100_1100_1010_0100_010);
-//
+
 //        //Apply one cycle to the circuit
 //        @(posedge CK);
 //        @(posedge CK);
 //        @(posedge CK);
-//        @(posedge TCLK);
-//        @(posedge TCLK);
-//        @(posedge TCLK);
-//        @(posedge TCLK);
-//        @(posedge TCLK);
-//        @(posedge TCLK);
-
 
         $finish;
     end
 
-    task start_bist();
-    begin
-        shift_into_ir(2'b11);
-        @(posedge TCLK);
-        @(posedge TCLK);
-        @(posedge TCLK);
-        @(posedge TCLK);
-        @(posedge TCLK);
-        @(posedge TCLK);
-    end
-    endtask
 
     //Starts in the Run Test State and ends in the Run Test State
     //Shifts the vector v into the BSR
@@ -467,240 +452,239 @@ module TOP_TB();
     task check_etr();
     begin
         @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'bz0z; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b011; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-//        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b110; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
-        assign {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'bz0z; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b011; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b110; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b010; @(posedge CK);
 
-        assign {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
+        {g89,g94,g98,g102,g107,g301,g306,g310,g314,g319,g557,g558,g559,g560,g561,
         g562,g563,g564,g705,g639,g567,g45,g42,g39,g702,g32,g38,g46,g36,g47,g40,g37,
         g41,g22,g44,g23} = 36'b1101_1000_0011_0101_1110_1000_1101_0010_1010;
-        assign {TMS, TRST, TDI} = 3'b01z; @(posedge CK);
+        {TMS, TRST, TDI} = 3'b01z; @(posedge CK);
 
     end
     endtask
@@ -721,7 +705,6 @@ module TOP_TB();
 
             ii = 210;
             while(ii >= 0) begin
-                $display("GOING!");
                 @(posedge TCLK); //Advance to Shift DR
                 TDI = v[ii];
 
