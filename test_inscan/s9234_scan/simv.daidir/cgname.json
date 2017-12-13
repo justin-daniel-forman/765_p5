@@ -1,0 +1,57 @@
+{
+    "tapcontroller": [
+        "tapcontroller",
+        "qkaLs",
+        "module"
+    ],
+    "ID": [
+        "ID",
+        "uFKBZ",
+        "module"
+    ],
+    "dff": [
+        "dff",
+        "IWW0i",
+        "module"
+    ],
+    "u_mux2": [
+        "u_mux2",
+        "ij1e3",
+        "module"
+    ],
+    "SFF": [
+        "SFF",
+        "FK5ZC",
+        "module"
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module"
+    ],
+    "s9234": [
+        "s9234",
+        "bCc5f",
+        "module"
+    ],
+    "udff": [
+        "udff",
+        "FAyUs",
+        "udp"
+    ],
+    "IR": [
+        "IR",
+        "HMumf",
+        "module"
+    ],
+    "TOP_TB": [
+        "TOP_TB",
+        "kBJhi",
+        "module"
+    ],
+    "udff_r": [
+        "udff_r",
+        "x2PRk",
+        "udp"
+    ]
+}

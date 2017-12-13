@@ -1,0 +1,99 @@
+{
+    "Misc": {
+        "cwd": "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog",
+        "csrc": "csrc",
+        "default_output_dir": "csrc",
+        "csrc_abs": "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/csrc",
+        "daidir": "simv.daidir",
+        "archive_dir": "archive.0",
+        "daidir_abs": "/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/verilog/simv.daidir"
+    },
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 91535
+    },
+    "CompileProcesses": [
+        "cgproc.18559.json"
+    ],
+    "NameTable": {
+        "tapcontroller": [
+            "tapcontroller",
+            "qkaLs",
+            "module"
+        ],
+        "ID": [
+            "ID",
+            "uFKBZ",
+            "module"
+        ],
+        "dff": [
+            "dff",
+            "IWW0i",
+            "module"
+        ],
+        "u_mux2": [
+            "u_mux2",
+            "ij1e3",
+            "module"
+        ],
+        "SFF": [
+            "SFF",
+            "FK5ZC",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ],
+        "s9234": [
+            "s9234",
+            "bCc5f",
+            "module"
+        ],
+        "udff": [
+            "udff",
+            "FAyUs",
+            "udp"
+        ],
+        "IR": [
+            "IR",
+            "HMumf",
+            "module"
+        ],
+        "TOP_TB": [
+            "TOP_TB",
+            "kBJhi",
+            "module"
+        ],
+        "udff_r": [
+            "udff_r",
+            "x2PRk",
+            "udp"
+        ]
+    },
+    "CompileStrategy": "fullobj",
+    "CompileStatus": "Successful",
+    "stat": {
+        "nMops": 253542
+    },
+    "CurCompileUdps": {
+        "udff_r": "objs/udps/x2PRk.o",
+        "udff": "objs/udps/FAyUs.o"
+    },
+    "CurCompileModules": [
+        "...MASTER...",
+        "dff",
+        "u_mux2",
+        "tapcontroller",
+        "SFF",
+        "IR",
+        "ID",
+        "s9234",
+        "TOP_TB"
+    ],
+    "LVLData": [
+        "SIM"
+    ],
+    "PEModules": []
+}

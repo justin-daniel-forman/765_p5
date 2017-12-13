@@ -1,1 +1,9 @@
-SOURCE_PORTLIST                                                  00000001
+CELLTYPE                                                         00000005
+FAULTS                                                           00000001
+LTYPE                                                            00000002
+PFLT                                                             00000007
+SOURCE_PORTLIST                                                  00000005
+TB_METAPRIMITIVE                                                 00000001
+TB_SYMBOL                                                        00000001
+TFLT                                                             00000007
+ZDLY                                                             00000002

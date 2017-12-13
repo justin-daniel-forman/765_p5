@@ -429,7 +429,8 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
             outf.write('\t')
             for sig in pouts:
                 try:
-                    outf.write(outdict[sig][i])
+                    outf.write('X')
+                    #outf.write(outdict[sig][i])
                 except IndexError:
                     outf.write('X')
 

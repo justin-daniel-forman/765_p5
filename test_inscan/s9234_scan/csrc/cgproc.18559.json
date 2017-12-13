@@ -1,0 +1,146 @@
+{
+    "Modules": {
+        "...MASTER...": {},
+        "s9234": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "IR": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "tapcontroller": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "ID": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "dff": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "u_mux2": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "SFF": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "TOP_TB": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "out": "amcQw_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 7264,
+            "mode": 4
+        },
+        "IWW0i_d": {
+            "mod": "dff",
+            "out": "IWW0i_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 8292,
+            "mode": 4
+        },
+        "HMumf_d": {
+            "mod": "IR",
+            "out": "HMumf_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 8940,
+            "mode": 4
+        },
+        "qkaLs_d": {
+            "mod": "tapcontroller",
+            "out": "qkaLs_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 29916,
+            "mode": 4
+        },
+        "ij1e3_d": {
+            "mod": "u_mux2",
+            "out": "ij1e3_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 7717,
+            "mode": 4
+        },
+        "FK5ZC_d": {
+            "mod": "SFF",
+            "out": "FK5ZC_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 10415,
+            "mode": 4
+        },
+        "bCc5f_d": {
+            "mod": "s9234",
+            "out": "bCc5f_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 1646500,
+            "mode": 4
+        },
+        "uFKBZ_d": {
+            "mod": "ID",
+            "out": "uFKBZ_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 6351,
+            "mode": 4
+        },
+        "kBJhi_d": {
+            "mod": "TOP_TB",
+            "out": "kBJhi_d.o",
+            "archive": "archive.0/_18559_archive_1.a",
+            "bytes": 2220904,
+            "mode": 4
+        }
+    },
+    "ObjArchives": [
+        {
+            "objects": [
+                [
+                    "amcQw_d.o",
+                    7264
+                ],
+                [
+                    "IWW0i_d.o",
+                    8292
+                ],
+                [
+                    "ij1e3_d.o",
+                    7717
+                ],
+                [
+                    "qkaLs_d.o",
+                    29916
+                ],
+                [
+                    "FK5ZC_d.o",
+                    10415
+                ],
+                [
+                    "HMumf_d.o",
+                    8940
+                ],
+                [
+                    "uFKBZ_d.o",
+                    6351
+                ],
+                [
+                    "bCc5f_d.o",
+                    1646500
+                ],
+                [
+                    "kBJhi_d.o",
+                    2220904
+                ]
+            ],
+            "archive": "archive.0/_18559_archive_1.a",
+            "size": 3946299
+        }
+    ]
+}
