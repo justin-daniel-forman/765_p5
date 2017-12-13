@@ -76,7 +76,7 @@ module int_SFF_LSFR(
     wire val_bist;
 
     xor (val_bist, feedback, tdi);
-    u_mux2(tdi_bist, tdi, val_bist, bistsel);
+    u_mux2 bist_mux(tdi_bist, tdi, val_bist, bistsel);
 
     int_SFF isff(tdi_bist, hold, din, ck, clockdr, updatedr, shiftdr, tdo, dout);
 
