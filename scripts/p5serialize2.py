@@ -341,13 +341,13 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
     count1 = 0
 
     #ctls = (TMS|TRST)
-    tms_startup = "Z1100001100100"
-    trst_startup = "01111111111111"
+    tms_startup  = "011000001100100"
+    trst_startup = "011111111111111"
+    tdi_startup  = "Z00000100000000"
     ctl_startup = {"TMS":tms_startup,"TRST":trst_startup}
     tms_shutdown = "1100"
     trst_shutdown = "1111"
     ctl_shutdown = {"TMS":tms_shutdown,"TRST":trst_shutdown}
-    tdi_startup = "Z0000010000000"
     tdi_shutdown = "0000"
 
     for i in range(len(indict[indict.keys()[0]])+1):
@@ -429,8 +429,7 @@ def write_etr(clocks, indict, outdict, scanchains, controls, pins, pouts,
             outf.write('\t')
             for sig in pouts:
                 try:
-                    outf.write('X')
-                    #outf.write(outdict[sig][i])
+                    outf.write(outdict[sig][i])
                 except IndexError:
                     outf.write('X')
 

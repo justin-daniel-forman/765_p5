@@ -1,0 +1,13 @@
+AFS_ECE_PREFIX="/afs/ece.cmu.edu/support"
+CDS="${AFS_ECE_PREFIX}/cds/share/image/usr/cds"
+CDS_LICENSE_FILE="${CDS}/share/license/license.dat"
+TB_HOME="${CDS}/et-15.11.000/tools.lnx86"
+PATH="${TB_HOME}/bin:${PATH}"
+
+LD_LIBRARY_PATH="${TB_HOME}/lib:${LD_LIBRARY_PATH}"
+LM_LICENSE_FILE="${CDS_LICENSE_FILE}"
+
+OA_UNSUPPORTED_PLAT=linux_rhel50_gcc44x
+CDS_AUTO_64BIT=ALL
+
+export LM_LICENSE_FILE PATH LD_LIBRARY_PATH CDS_AUTO_64BIT OA_UNSUPPORTED_PLAT 
