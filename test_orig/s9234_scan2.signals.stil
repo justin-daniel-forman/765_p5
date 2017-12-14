@@ -6,11 +6,11 @@ STIL 1.0;
 // Converted from etr to STIL
 
 // 42321 vectors in file
-// 2 clock signals present
-// 37 input signals present (not including clocks)
+// 1 clock signals present
+// 38 input signals present (not including clocks)
 // 40 output signals preset
 
-// CLOCKS: CK, TCLK
+// CLOCKS: CK
 // INPUTS: TMS, TRST, TDI, g89, g94, g98, g102, g107, g301, g306, g310, g314, g319, g557, g558, g559, g560, g561, g562, g563, g564, g705, g639, g567, g45, g42, g39, g702, g32, g38, g46, g36, g47, g40, g37, g41, g22, g44, g23
 // OUTPUTS: TDO, g2584, g3222, g3600, g4307, g4321, g4422, g4809, g5137, g5468, g5469, g5692, g6282, g6284, g6360, g6362, g6364, g6366, g6368, g6370, g6372, g6374, g6728, g1290, g4121, g4108, g4106, g4103, g1293, g4099, g4102, g4109, g4100, g4112, g4105, g4101, g4110, g4104, g4107, g4098
 
@@ -19,7 +19,6 @@ STIL 1.0;
 
   Signals {
     "CK" In;
-    "TCLK" In;
     "TMS" In;
     "TRST" In;
     "TDI" In;
@@ -105,7 +104,7 @@ STIL 1.0;
 // --- DEFINE SIGNAL GROUPS ---
 
   SignalGroups {
-    "ALLPIs" = '"CK"+"TCLK"+"TMS"+"TRST"+"TDI"+"g89"+"g94"+"g98"+"g102"+"g107"+"g301"+"g306"+"g310"+"g314"+"g319"+"g557"+"g558"+"g559"+"g560"+"g561"+"g562"+"g563"+"g564"+"g705"+"g639"+"g567"+"g45"+"g42"+"g39"+"g702"+"g32"+"g38"+"g46"+"g36"+"g47"+"g40"+"g37"+"g41"+"g22"+"g44"+"g23"';
+    "ALLPIs" = '"CK"+"TMS"+"TRST"+"TDI"+"g89"+"g94"+"g98"+"g102"+"g107"+"g301"+"g306"+"g310"+"g314"+"g319"+"g557"+"g558"+"g559"+"g560"+"g561"+"g562"+"g563"+"g564"+"g705"+"g639"+"g567"+"g45"+"g42"+"g39"+"g702"+"g32"+"g38"+"g46"+"g36"+"g47"+"g40"+"g37"+"g41"+"g22"+"g44"+"g23"';
     "ALLPOs" = '"TDO"+"g2584"+"g3222"+"g3600"+"g4307"+"g4321"+"g4422"+"g4809"+"g5137"+"g5468"+"g5469"+"g5692"+"g6282"+"g6284"+"g6360"+"g6362"+"g6364"+"g6366"+"g6368"+"g6370"+"g6372"+"g6374"+"g6728"+"g1290"+"g4121"+"g4108"+"g4106"+"g4103"+"g1293"+"g4099"+"g4102"+"g4109"+"g4100"+"g4112"+"g4105"+"g4101"+"g4110"+"g4104"+"g4107"+"g4098"';
   }
 

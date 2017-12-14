@@ -1,2 +1,0 @@
-SOURCE=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/s9234_JTAG_TOP.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/primitives.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/TAP.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/JTAG.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/s9234_JTAG_BSR.v,/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/test_orig/s9234_scan/s9234_inscan.v
-RUNDIR=/afs/ece.cmu.edu/usr/dsoung/Private/18765/765_p5/
